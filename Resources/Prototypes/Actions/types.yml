@@ -65,7 +65,7 @@
   checkCanInteract: false
   itemIconStyle: BigAction
   icon:
-    sprite: Textures/Mobs/Species/Human/organs.rsi
+    sprite: Mobs/Species/Human/organs.rsi
     state: brain
   event: !type:CheckMindMasterImplantEvent
 
