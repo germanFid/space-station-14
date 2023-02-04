@@ -28,6 +28,8 @@ uplink-c4-bundle-name = набор C-4
 uplink-c4-bundle-desc = Иногда количество - это качество. Содержит 8 штук взрывчатки C-4.
 uplink-emp-grenade-name = { ent-EmpGrenade }
 uplink-emp-grenade-desc = { ent-EmpGrenade.desc }
+uplink-bomb-implanter-name = Долгая подкожная бомба
+uplink-bomb-implanter-desc = Устанавливает подкожный имплант, взрывающийся через 50 минут после установки. Гарантированно убивает носителя.
 # Ammo
 uplink-pistol-magazine-name = пистолетный магазин (.35 авто)
 uplink-pistol-magazine-desc = Пистолетный магазин на 10 патронов. Совместим с "Гадюкой".

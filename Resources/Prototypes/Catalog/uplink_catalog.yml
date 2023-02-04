@@ -151,6 +151,21 @@
     Telecrystal: 4
   categories:
   - UplinkExplosives
+  id: UplinkBombImplanter
+  name: uplink-bomb-implanter-name
+  description: uplink-bomb-implanter-desc
+  productEntity: BombImplanter
+  cost:
+    Telecrystal: 7
+  categories:
+  - UplinkExplosives
+  conditions:
+    - !type:BuyerJobCondition
+      blacklist:
+      - MedicalDoctor
+      - Chemist
+      - ChiefMedicalOfficer
+
 
 # Ammo
 
@@ -568,7 +583,7 @@
     blacklist:
       components:
       - SurplusBundle
-  
+
 - type: listing
   id: uplinkRevolverCapGunFake
   name: uplink-revolver-cap-gun-fake-name
@@ -750,7 +765,7 @@
     Telecrystal: 8
   categories:
   - UplinkMisc
-  
+
 - type: listing
   id: UplinkStimkit
   name: uplink-stimkit-name
@@ -760,7 +775,7 @@
     Telecrystal: 12
   categories:
   - UplinkMisc
-  
+
 - type: listing
   id: UplinkStimpackExperimental
   name: uplink-experimental-stimpack-name
