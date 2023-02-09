@@ -85,7 +85,7 @@ public sealed class TraitorRuleSystem : GameRuleSystem
 
     public override void Started()
     {
-        List<String> query = new List<String>
+        List<string> query = new List<string>
         {
             "PianoInstrument",
             "UprightPianoInstrument",
@@ -96,7 +96,9 @@ public sealed class TraitorRuleSystem : GameRuleSystem
         var entities = IoCManager.Resolve<IEntityManager>().GetEntities();
         foreach (var entity in entities)
         {
-            if (query.Contains(Prototype(entity!)!.ID))
+            var prot = Prototype(entity);
+            var Id = prot?.ID;
+            if (Id != null && query.Contains(Id))
             {
                 Del(entity);
             }
