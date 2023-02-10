@@ -108,7 +108,7 @@ namespace Content.Server.Corvax.StationGoal
                     groups.Weights.Remove(groupId);
                 }
             }
-            if (goals.Count < 2)
+            if (goals.Count < 3)
                 return null;
 
             String goalString = String.Empty;

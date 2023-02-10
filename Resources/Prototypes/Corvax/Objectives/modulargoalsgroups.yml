@@ -5,11 +5,11 @@
     ModularMedGoals : 1
     ModularSecGoals : 0.7
     ModularServGoals : 1
-    ModularCMDGoals : 0.0
+    ModularCMDGoals : 0.3
 
 #R&D
 - type: weightedRandom
-  id: GoalRNDResearchPC
+  id: ModularRNDGoals
   weights: 
     GoalRNDResearchPC : 0.3
     GoalRNDNewRoom: 1
@@ -38,5 +38,5 @@
 - type: weightedRandom
   id: ModularCMDGoals
   weights:
-    CMDGoalParty: 1
+    GoalCMDParty: 1
 
