@@ -83,7 +83,27 @@ public sealed class TraitorRuleSystem : GameRuleSystem
             DoTraitorStart();
     }
 
-    public override void Started(){}
+    public override void Started()
+    {
+        List<string> query = new List<string>
+        {
+            "PianoInstrument",
+            "UprightPianoInstrument",
+            "ChurchOrganInstrument"
+        };
+
+
+        var entities = IoCManager.Resolve<IEntityManager>().GetEntities();
+        foreach (var entity in entities)
+        {
+            var prot = Prototype(entity);
+            var Id = prot?.ID;
+            if (Id != null && query.Contains(Id))
+            {
+                Del(entity);
+            }
+        }
+    }
 
     public override void Ended()
     {
