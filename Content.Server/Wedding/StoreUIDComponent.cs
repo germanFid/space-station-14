@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Content.Server.Wedding
 {
-    internal sealed class StoreUIDComponent
+    internal sealed class StoreUIDComponent : Component
     {
-        public EntityUid UID;
+        [ViewVariables]
+        public EntityUid? UID = null;
     }
 }
