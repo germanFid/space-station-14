@@ -1,0 +1,18 @@
+- type: entity
+  name: wedding ring
+  parent: BaseItem
+  id: WeddingRing
+  description: Love's Everywhere!
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/bikehorn.rsi
+    state: icon
+  - type: ActivatableUI
+    key: enum.PaperUiKey.Key
+    closeOnHandDeselect: false
+  - type: UserInterface
+    interfaces:
+    - key: enum.PaperUiKey.Key
+      type: PaperBoundUserInterface
+  - type: Item
+    size: 1

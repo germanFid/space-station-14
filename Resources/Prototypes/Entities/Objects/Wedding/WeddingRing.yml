@@ -3,7 +3,14 @@
  description: wedding-ring-desc
  parent: BaseItem
  id: WeddingRing
- components: 
+ components:
+  - type: Sprite
+    sprite: Objects/Fun/bikehorn.rsi
+    state: icon
+  - type: UserInterface
+    interfaces:
+    - key: enum.PaperUiKey.Key
+      type: PaperBoundUserInterface
   - type: Item
     size: 15
   - type: StoreUID
