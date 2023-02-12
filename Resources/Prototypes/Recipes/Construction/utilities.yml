@@ -59,13 +59,7 @@
   placementMode: SnapgridCenter
   canBuildInImpassable: false
   conditions:
-    - !type:TileNotBlocked
-      failIfSpace: false
-    - !type:TileType
-      targets:
-        - Lattice
-        - Plating
-        - UnderPlating
+    - !type:TileNotBlocked {}
 
 - type: construction
   name: cable terminal

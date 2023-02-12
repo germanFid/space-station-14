@@ -150,7 +150,7 @@
   completetime: 5
   applyMaterialDiscount: false # ingredients dropped when destroyed
   materials:
-    Steel: 500
+    Steel: 10
 
 - type: latheRecipe
   id: TargetClown
@@ -158,7 +158,7 @@
   completetime: 5
   applyMaterialDiscount: false # ingredients dropped when destroyed
   materials:
-    Steel: 500
+    Steel: 10
 
 - type: latheRecipe
   id: TargetSyndicate
@@ -166,7 +166,7 @@
   completetime: 5
   applyMaterialDiscount: false # ingredients dropped when destroyed
   materials:
-    Steel: 500
+    Steel: 10
 
 - type: latheRecipe
   id: MagazineBoxPistol
