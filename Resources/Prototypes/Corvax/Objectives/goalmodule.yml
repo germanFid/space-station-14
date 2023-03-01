@@ -7,6 +7,10 @@
   id: GoalRNDNewRoom
   text: station-goal-rnd-newroom
 
+- type: stationGoalModular
+  id: GoalRNDReserveEnergy
+  text: station-goal-rnd-reserveenergy
+
 # Med
 - type: stationGoalModular
   id: GoalMedMakeMoreEpinephrine
@@ -15,6 +19,10 @@
 - type: stationGoalModular
   id: GoalMedVeterinary
   text: station-goal-med-veterinary
+
+- type: stationGoalModular
+  id: GoalMedStimulators
+  text: station-goal-med-stimulators
 
 # Sec
 - type: stationGoalModular
@@ -30,7 +38,30 @@
   id: GoalServLattery
   text: station-goal-serv-lattery
 
+- type: stationGoalModular
+  id: GoalServLiturgy
+  text: station-goal-serv-liturgy
+
+- type: stationGoalModular
+  id: GoalServTheater
+  text: station-goal-serv-theater
+
+- type: stationGoalModular
+  id: GoalServBarman
+  text: station-goal-serv-barman
+
+- type: stationGoalModular
+  id: GoalServDinner
+  text: station-goal-serv-dinner
+
 # CMD
 - type: stationGoalModular
   id: GoalCMDParty
   text: station-goal-cmd-party
+
+# Cargo
+- type: stationGoalModular
+  id: GoalCargoConveyor
+  text: station-goal-cargo-conveyor
+
+  
