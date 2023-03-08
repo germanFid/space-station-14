@@ -1,0 +1,63 @@
+- type: weightedRandom
+  id: ModularGoalsGroups
+  weights:
+    ModularRNDGoals : 0.7
+    ModularMedGoals : 0.7
+    ModularSecGoals : 0.7
+    ModularServGoals : 0.8
+    ModularCMDGoals : 0.3
+    ModularCargoGoals: 0.8
+   # ModularEngGoals: 0.6
+
+#R&D
+- type: weightedRandom
+  id: ModularRNDGoals
+  weights: 
+    GoalRNDNewRoom: 1
+    GoalRNDReserveEnergy: 1
+
+#MED
+- type: weightedRandom
+  id: ModularMedGoals
+  weights:
+    GoalMedMakeMoreEpinephrine : 0.3
+    GoalMedVeterinary : 1
+    GoalMedStimulators: 1
+
+#SEC
+- type: weightedRandom
+  id: ModularSecGoals
+  weights:
+    GoalSecFingerprints: 0.7
+    GoalSecLection: 1
+
+#Service
+- type: weightedRandom
+  id: ModularServGoals
+  weights:
+    GoalServLattery: 1
+    GoalServLiturgy: 1
+    GoalServTheater: 1
+    GoalServBarman: 1
+    GoalServDinner: 1
+
+#CMD
+- type: weightedRandom
+  id: ModularCMDGoals
+  weights:
+    GoalCMDParty: 1
+
+#Cargo
+- type: weightedRandom
+  id: ModularCargoGoals
+  weights:
+    GoalCargoConveyor: 1
+
+
+#Eng
+#- type: weightedRandom
+ # id: ModularEngGoals
+  #weights:
+
+    
+

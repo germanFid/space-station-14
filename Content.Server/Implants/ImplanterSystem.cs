@@ -54,7 +54,7 @@ public sealed partial class ImplanterSystem : SharedImplanterSystem
         {
             //Implant self instantly, otherwise try to inject the target.
             if (args.User == args.Target)
-                Implant(uid, args.Target.Value, component);
+                Implant(uid, args.Target.Value, args.User, component);
 
             else
                 TryImplant(component, args.User, args.Target.Value, uid);
@@ -96,8 +96,16 @@ public sealed partial class ImplanterSystem : SharedImplanterSystem
             BreakOnTargetMove = true,
             BreakOnDamage = true,
             BreakOnStun = true,
+<<<<<<< HEAD
+            UsedFinishedEvent = new ImplanterImplantCompleteEvent(implanter, target, user),
+            UserCancelledEvent = new ImplanterCancelledEvent()
+        });
+=======
             NeedHand = true
         }, implantEvent);
+            UsedFinishedEvent = new ImplanterImplantCompleteEvent(implanter, target, user),
+            UserCancelledEvent = new ImplanterCancelledEvent()
+        });
     }
 
     /// <summary>
@@ -134,10 +142,68 @@ public sealed partial class ImplanterSystem : SharedImplanterSystem
 
     private void OnImplant(EntityUid uid, ImplanterComponent component, DoAfterEvent<ImplantEvent> args)
     {
+        component.CancelToken?.Cancel();
+        component.CancelToken = null;
+        Implant(args.Implanter, args.Target, args.Instigator, component);
+    }
+
+    private void OnDrawAttemptSuccess(EntityUid uid, ImplanterComponent component, ImplanterDrawCompleteEvent args)
+    {
+        component.CancelToken?.Cancel();
+        component.CancelToken = null;
+        Draw(args.Implanter, args.User, args.Target, component);
+    }
+
+    private void OnImplantAttemptFail(EntityUid uid, ImplanterComponent component, ImplanterCancelledEvent args)
+    {
+        component.CancelToken?.Cancel();
+        component.CancelToken = null;
+    }
+
+    private sealed class ImplanterImplantCompleteEvent : EntityEventArgs
+    {
+        public EntityUid Implanter;
+        public EntityUid Target;
+        public EntityUid Instigator;
+
+        public ImplanterImplantCompleteEvent(EntityUid implanter, EntityUid target, EntityUid instigator)
+        {
+            Implanter = implanter;
+            Target = target;
+            Instigator = instigator;
         if (args.Cancelled)
         {
             component.CancelToken = null;
             return;
+        component.CancelToken?.Cancel();
+        component.CancelToken = null;
+        Implant(args.Implanter, args.Target, args.Instigator, component);
+    }
+
+    private void OnDrawAttemptSuccess(EntityUid uid, ImplanterComponent component, ImplanterDrawCompleteEvent args)
+    {
+        component.CancelToken?.Cancel();
+        component.CancelToken = null;
+        Draw(args.Implanter, args.User, args.Target, component);
+    }
+
+    private void OnImplantAttemptFail(EntityUid uid, ImplanterComponent component, ImplanterCancelledEvent args)
+    {
+        component.CancelToken?.Cancel();
+        component.CancelToken = null;
+    }
+
+    private sealed class ImplanterImplantCompleteEvent : EntityEventArgs
+    {
+        public EntityUid Implanter;
+        public EntityUid Target;
+        public EntityUid Instigator;
+
+        public ImplanterImplantCompleteEvent(EntityUid implanter, EntityUid target, EntityUid instigator)
+        {
+            Implanter = implanter;
+            Target = target;
+            Instigator = instigator;
         }
 
         if (args.Handled || args.Args.Target == null || args.Args.Used == null)
