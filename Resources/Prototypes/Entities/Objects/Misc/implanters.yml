@@ -143,6 +143,7 @@
   components:
     - type: Implanter
       implant: MindControlImplant
+      implantTime: 2.0
 
 #Nuclear Operative/Special implanters
 
