@@ -151,6 +151,8 @@
     Telecrystal: 4
   categories:
   - UplinkExplosives
+
+- type: listing
   id: UplinkBombImplanter
   name: uplink-bomb-implanter-name
   description: uplink-bomb-implanter-desc
