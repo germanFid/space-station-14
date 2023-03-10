@@ -360,10 +360,10 @@ namespace Content.Server.Nutrition.EntitySystems
             else
             {
                 _popupSystem.PopupEntity(
-                    Loc.GetString("drink-component-try-use-drink-success-slurp-taste", ("flavors", flavors)), args.Args.User,
+                    Loc.GetString("drink-component-try-use-drink-success-slurp-taste", ("drink", Name(component.Owner)), ("flavors", flavors)), args.Args.User,
                     args.Args.User);
                 _popupSystem.PopupEntity(
-                    Loc.GetString("drink-component-try-use-drink-success-slurp"), args.Args.User, Filter.PvsExcept(args.Args.User), true);
+                    Loc.GetString("drink-component-try-use-drink-success-slurp", ("drink", Name(component.Owner))), args.Args.User, Filter.PvsExcept(args.Args.User), true);
 
                 // log successful voluntary drinking
                 _adminLogger.Add(LogType.Ingestion, LogImpact.Low, $"{ToPrettyString(args.Args.User):target} drank {ToPrettyString(uid):drink}");
