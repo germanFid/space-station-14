@@ -6,6 +6,8 @@ using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Serialization.Manager;
+using Robust.Shared.Serialization.TypeSerializers.Interfaces;
 
 namespace Content.Server.Corvax.StationGoal
 {
@@ -36,7 +38,7 @@ namespace Content.Server.Corvax.StationGoal
 
             if (chance > 0.3f)
             {
-                var newgoal = GetRandomModularGoal("ModularGoalsGroups");
+                var newgoal = GetRandomModularGoal();
                 if (newgoal != null)
                     return SendStationGoal(newgoal);
             }
@@ -45,6 +47,14 @@ namespace Content.Server.Corvax.StationGoal
             var goal = _random.Pick(availableGoals);
             return SendStationGoal(goal!);
 
+        }
+
+        public bool SendModularGoal()
+        {
+            var newgoal = GetRandomModularGoal();
+            if (newgoal != null)
+                return SendStationGoal(newgoal);
+            return false;
         }
 
         /// <summary>
@@ -72,9 +82,11 @@ namespace Content.Server.Corvax.StationGoal
 
             return wasSent;
         }
-        public StationGoalPrototype? GetRandomModularGoal(string modGoalsGroupProto)
+        public StationGoalPrototype? GetRandomModularGoal()
         {
-            if (!_prototypeManager.TryIndex<WeightedRandomPrototype>(modGoalsGroupProto, out var groups))
+            var modGoalsGroupProto = "ModularGoalsGroups";
+
+            if (!_prototypeManager.TryIndex<WeightedRandomPrototype>(modGoalsGroupProto, out var groupsorg))
             {
                 Logger.Error("Tried to get a random objective, but can't index WeightedRandomPrototype " + modGoalsGroupProto);
                 return null;
@@ -84,15 +96,16 @@ namespace Content.Server.Corvax.StationGoal
 
             Int32 goalsNum = 3;
 
+            var groups = IoCManager.Resolve<ISerializationManager>().CreateCopy(groupsorg, null, false, true);
 
 
             for (Int32 i = 0; i < goalsNum; i++)
             {
-                if (groups.Weights.Count < 1)
+                if (groups?.Weights.Count < 1)
                     break;
 
-                var groupId = groups.Pick(_random);
-                if (!_prototypeManager.TryIndex<WeightedRandomPrototype>(groupId, out var group))
+                var groupId = groups?.Pick(_random);
+                if (!_prototypeManager.TryIndex<WeightedRandomPrototype>(groupId!, out var group))
                 {
                     continue;
                 }
@@ -105,7 +118,7 @@ namespace Content.Server.Corvax.StationGoal
                 if (goal != null)
                 {
                     goals.Add(goal);
-                    groups.Weights.Remove(groupId);
+                    groups?.Weights.Remove(groupId!);
                 }
             }
             if (goals.Count < 3)
@@ -124,6 +137,9 @@ namespace Content.Server.Corvax.StationGoal
             mainGoal.Text += goalString;
 
             return mainGoal;
+
+
+
 
 
 

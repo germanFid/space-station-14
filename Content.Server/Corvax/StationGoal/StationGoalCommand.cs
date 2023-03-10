@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Net.Mail;
 using Content.Server.Administration;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
@@ -49,6 +50,21 @@ namespace Content.Server.Corvax.StationGoal
             }
 
             return CompletionResult.Empty;
+        }
+    }
+    [AdminCommand(AdminFlags.Fun)]
+    public sealed class StationModularGoalCommand : IConsoleCommand
+    {
+        public string Command => "sendstationmodulargoal";
+
+        public string Description => "Send random modular goal.";
+
+        public string Help => "Send random modular goal.";
+
+        public void Execute(IConsoleShell shell, string argStr, string[] args)
+        {
+            var stationGoalPaper = IoCManager.Resolve<IEntityManager>().System<StationGoalPaperSystem>();
+            stationGoalPaper.SendModularGoal();
         }
     }
 }

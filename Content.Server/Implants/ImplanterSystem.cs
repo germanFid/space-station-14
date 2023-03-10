@@ -96,16 +96,8 @@ public sealed partial class ImplanterSystem : SharedImplanterSystem
             BreakOnTargetMove = true,
             BreakOnDamage = true,
             BreakOnStun = true,
-<<<<<<< HEAD
-            UsedFinishedEvent = new ImplanterImplantCompleteEvent(implanter, target, user),
-            UserCancelledEvent = new ImplanterCancelledEvent()
-        });
-=======
             NeedHand = true
         }, implantEvent);
-            UsedFinishedEvent = new ImplanterImplantCompleteEvent(implanter, target, user),
-            UserCancelledEvent = new ImplanterCancelledEvent()
-        });
     }
 
     /// <summary>
@@ -142,18 +134,28 @@ public sealed partial class ImplanterSystem : SharedImplanterSystem
 
     private void OnImplant(EntityUid uid, ImplanterComponent component, DoAfterEvent<ImplantEvent> args)
     {
-        component.CancelToken?.Cancel();
+        if (args.Cancelled)
+        {
+            component.CancelToken = null;
+            return;
+        }
+
+        if (args.Handled || args.Args.Target == null || args.Args.Used == null)
+            return;
+
+        Implant(args.Args.Used.Value, args.Args.Target.Value, args.Args.User, component);
+
+        args.Handled = true;
         component.CancelToken = null;
-        Implant(args.Implanter, args.Target, args.Instigator, component);
     }
 
-    private void OnDrawAttemptSuccess(EntityUid uid, ImplanterComponent component, ImplanterDrawCompleteEvent args)
+/*    private void OnDrawAttemptSuccess(EntityUid uid, ImplanterComponent component, ImplanterDrawCompleteEvent args)
     {
         component.CancelToken?.Cancel();
         component.CancelToken = null;
         Draw(args.Implanter, args.User, args.Target, component);
     }
-
+*//*
     private void OnImplantAttemptFail(EntityUid uid, ImplanterComponent component, ImplanterCancelledEvent args)
     {
         component.CancelToken?.Cancel();
@@ -214,7 +216,7 @@ public sealed partial class ImplanterSystem : SharedImplanterSystem
         args.Handled = true;
         component.CancelToken = null;
     }
-
+*/
     private void OnDraw(EntityUid uid, ImplanterComponent component, DoAfterEvent<DrawEvent> args)
     {
         if (args.Cancelled)
