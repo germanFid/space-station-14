@@ -12,6 +12,7 @@ using Content.Server.Station.Systems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
+using Content.Shared.PDA;
 using Content.Shared.Database;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement;
@@ -30,6 +31,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
+using Content.Server.Access.Systems;
+using Content.Shared.Roles;
 
 namespace Content.Server.Chat.Systems;
 
@@ -49,6 +52,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private readonly IdCardSystem _idCard = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly StationSystem _stationSystem = default!;
@@ -102,14 +106,14 @@ public sealed partial class ChatSystem : SharedChatSystem
 
     private void OnGameChange(GameRunLevelChangedEvent ev)
     {
-        switch(ev.New)
+        switch (ev.New)
         {
             case GameRunLevel.InRound:
-                if(!_configurationManager.GetCVar(CCVars.OocEnableDuringRound))
+                if (!_configurationManager.GetCVar(CCVars.OocEnableDuringRound))
                     _configurationManager.SetCVar(CCVars.OocEnabled, false);
                 break;
             case GameRunLevel.PostRound:
-                if(!_configurationManager.GetCVar(CCVars.OocEnableDuringRound))
+                if (!_configurationManager.GetCVar(CCVars.OocEnableDuringRound))
                     _configurationManager.SetCVar(CCVars.OocEnabled, true);
                 break;
         }
@@ -307,9 +311,35 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         name = FormattedMessage.EscapeText(name);
         // Corvax-SpeakerColor-Start
-        if (TryComp<HumanoidAppearanceComponent>(source, out var comp))
-            name = $"[color={comp.SpeakerColor.ToHex()}]{name}[/color]";
+        bool found = false;
+        if (_idCard.TryFindIdCard(source, out var card))
+        {
+            var departs = _prototypeManager.EnumeratePrototypes<DepartmentPrototype>();
+            foreach (var d in departs)
+            {
+                foreach (var j in d.Roles)
+                {
+                    _prototypeManager.TryIndex<JobPrototype>(j, out var jprot);
+                    if (jprot?.LocalizedName == card.JobTitle)
+                    {
+                        name = $"[color={d.Color.ToHex()}]{name}[/color]";
+                        found = true;
+                    }
+                }
+
+            }
+        }
+        if (!found)
+        {
+            if (_inventory.TryGetSlotEntity(source, "id", out var idUid) && TryComp<PDABorderColorComponent>(idUid, out var pdacolor))
+            {
+                name = $"[color={pdacolor.BorderColor}]{name}[/color]";
+            }
+            else
+                name = $"[color={Color.White.ToHex()}]{name}[/color]";
+        }
         // Corvax-SpeakerColor-End
+
         var wrappedMessage = Loc.GetString("chat-manager-entity-say-wrap-message",
             ("entityName", name), ("message", FormattedMessage.EscapeText(message)));
 

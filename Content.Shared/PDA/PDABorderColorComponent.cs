@@ -1,4 +1,4 @@
-﻿namespace Content.Client.PDA;
+namespace Content.Shared.PDA;
 
 /// <summary>
 /// Used for specifying the pda windows border colors
