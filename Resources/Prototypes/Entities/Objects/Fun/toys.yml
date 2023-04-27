@@ -939,6 +939,15 @@
   - type: Sprite
     state: plushie-vice
 
+- type: entity
+  parent: BasePlushie
+  id: PlushieTimofey
+  name: плюшевый Капитан Гнида
+  description: Если это ваш капитан, немедленно выбрасывайтесь в космос. Или выбрасывайте его. Лучше второе.
+  components:
+  - type: Sprite
+    state: plushie-timofey
+
 
 
 
