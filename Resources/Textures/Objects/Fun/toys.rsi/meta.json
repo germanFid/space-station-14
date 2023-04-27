@@ -323,6 +323,21 @@
         {
             "name": "orb-inhand-right",
             "directions": 4
+        },
+        {
+            "name": "plushie-qm"
+        },
+        {
+            "name": "plushie-vice"
+        },
+        {
+            "name": "plushie-chach"
+        },
+        {
+            "name": "plushie-hira"
+        },
+        {
+            "name": "plushie-chiefengineer"
         }
     ]
 }
