@@ -1,0 +1,34 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from https://github.com/ss220-space/Paradise/ at commit ee96f4d216c56b442d61e22082a12c279746ae05",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon"
+        },
+        {
+            "name": "tValveOn",
+            "directions": 4
+        },
+        {
+            "name": "tValveOnF",
+            "directions": 4
+        },
+        {
+            "name": "tValveOff",
+            "directions": 4
+        },
+        {
+            "name": "tValveOffF",
+            "directions": 4
+        },
+        {
+            "name": "pipe",
+            "directions": 4
+        }
+    ]
+}
