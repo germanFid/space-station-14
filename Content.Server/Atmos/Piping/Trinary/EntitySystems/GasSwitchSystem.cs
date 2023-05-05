@@ -43,6 +43,9 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
         {
             // We call set in startup so it sets the appearance, node state, etc.
             Set(uid, component, component.Switch);
+            _ambientSoundSystem.SetAmbience(component.Owner, true);
+            _ambientSoundSystem.SetVolume(component.Owner, -15f);
+            _ambientSoundSystem.SetRange(component.Owner, 2f);
         }
 
         private void OnActivate(EntityUid uid, GasSwitchComponent component, ActivateInWorldEvent args)
@@ -69,7 +72,6 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                     outlet.AddAlwaysReachable(inlet1);
                     inlet2.RemoveAlwaysReachable(outlet);
                     outlet.RemoveAlwaysReachable(inlet2);
-                    _ambientSoundSystem.SetAmbience(component.Owner, true);
                 }
                 else
                 {
@@ -77,7 +79,6 @@ namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
                     outlet.AddAlwaysReachable(inlet2);
                     inlet1.RemoveAlwaysReachable(outlet);
                     outlet.RemoveAlwaysReachable(inlet1);
-                    _ambientSoundSystem.SetAmbience(component.Owner, false);
                 }
             }
         }
