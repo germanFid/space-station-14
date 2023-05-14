@@ -16,3 +16,5 @@ ent-CartridgeAnomalousParticleEpsilon = патрон (эпсилон-части�
     .desc = { ent-BaseAnomalousCartridge.desc }
 ent-CartridgeAnomalousParticleZeta = патрон (зета-частицы)
     .desc = { ent-BaseAnomalousCartridge.desc }
+ent-CartridgeHolyMagnum = Серебряная пуля (.45 magnum)
+    .desc = Любая нечисть будет мертва после пары таких пуль.

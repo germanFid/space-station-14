@@ -185,3 +185,7 @@ ent-ClothingUniformJumpsuitPirate = пиратская форма
     .desc = Пиратская вариация комбинезона космического моряка.
 ent-ClothingUniformJumpsuitCossack = казачий костюм
     .desc = Старые добрые штаны да бригантина.
+ent-ClothingUniformJumpsuitHunter = Костюм Охотника на нечисть
+    .desc = Стильная, хотя немного старомодная униформа борца с нечистью.
+ent-ClothingUniformJumpsuitHuntersLeader = Костюм командующего охотников на нечисть
+    .desc = Осветленная в целях защиты форма. Говорят, существует всего пару экземпляров.

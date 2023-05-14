@@ -99,3 +99,23 @@
     steps: 7
     zeroVisible: false
   - type: Appearance
+
+- type: entity
+  id: SpeedLoaderMagnumHoly
+  name: "speed loader (.45 magnum holy)"
+  parent: BaseSpeedLoaderMagnum
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeHolyMagnum
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/SpeedLoaders/Magnum/magnum_speed_loader.rsi
+    layers:
+      - state: base
+        map: [ "enum.GunVisualLayers.Base" ]
+      - state: rubber-6
+        map: [ "enum.GunVisualLayers.Mag" ]
+  - type: MagazineVisuals
+    magState: rubber
+    steps: 7
+    zeroVisible: false
+  - type: Appearance

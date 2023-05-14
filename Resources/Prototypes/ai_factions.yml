@@ -39,3 +39,11 @@
   hostile:
   - NanoTrasen
   - Syndicate
+
+- type: faction
+  id: MonsterHunter
+  hostile:
+  - SimpleNeutral
+  - SimpleHostile
+  - Dragon
+  - Xeno

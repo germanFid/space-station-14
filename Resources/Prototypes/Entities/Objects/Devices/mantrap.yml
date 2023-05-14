@@ -1,0 +1,55 @@
+- type: entity
+  name: Mantrap
+  parent: BaseItem
+  id: mantrap
+  description: Useful for catching werewolfs sneaking into your station.
+  components:
+    - type: Sprite
+      sprite: Objects/Devices/mantrap.rsi
+      netsync: false
+      drawdepth: SmallMobs
+      layers:
+        - state: mantrap
+    - type: StepTrigger
+      intersectRatio: 0.2
+      requiredTriggeredSpeed: 0
+    - type: Mantrap
+    - type: TriggerOnStepTrigger
+    - type: DamageUserOnTrigger
+      damage:
+        types:
+          Blunt: 100
+    - type: EmitSoundOnUse
+      sound: "/Audio/Werewolf/mantrapactivate.ogg"
+    - type: EmitSoundOnTrigger
+      sound: "/Audio/Werewolf/mantrapsnap.ogg"
+    - type: Item
+      sprite: Objects/Devices/mantrap.rsi
+    - type: Appearance
+      visuals:
+        - type: GenericEnumVisualizer
+          key: enum.MantrapVisuals.Visual
+          layer: 0
+          states:
+            enum.MantrapVisuals.Armed: mantraparmed
+            enum.MantrapVisuals.Unarmed: mantrap
+    - type: Physics
+      bodyType: Dynamic
+    - type: CollisionWake
+      enabled: false
+    - type: Fixtures
+      fixtures:
+        - shape:
+            !type:PhysShapeAabb
+            bounds: "-0.2,-0.2,0.2,0.2"
+          id: "slips"
+          hard: false
+          layer:
+            - LowImpassable
+        - shape:
+            !type:PhysShapeAabb
+            bounds: "-0.2,-0.2,0.2,0.2"
+          density: 30
+          mask:
+            - ItemMask
+    - type: Rotatable

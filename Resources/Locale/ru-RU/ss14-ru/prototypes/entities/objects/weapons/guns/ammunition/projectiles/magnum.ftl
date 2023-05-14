@@ -6,3 +6,5 @@ ent-BulletMagnumPractice = пуля (.45 магнум учебная)
     .desc = { ent-BaseBulletPractice.desc }
 ent-BulletMagnumRubber = пуля (.45 магнум резиновая)
     .desc = { ent-BaseBulletRubber.desc }
+ent-HolyBulletMagnum = cеребряная пуля (.45 магнум)
+    .desc = { ent-BaseBullet.desc }

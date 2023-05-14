@@ -78,3 +78,49 @@
   - type: Clothing
     slots:
     - Belt
+
+- type: entity
+  name: Orthodox bible
+  description: New Interstellar Version 2340
+  parent: BaseStorageItem
+  id: OrthodoxBible
+  components:
+  - type: UseDelay
+    delay: 20.0
+  - type: Bible
+    damage:
+      groups:
+        Brute: -20
+        Airloss: -20
+        Toxin: -20
+        Evil: 45
+    damageOnFail:
+      groups:
+        Brute: 20
+        Airloss: 20
+    damageOnUntrainedUse:
+      groups:
+        Burn: 25
+    failChance: 0
+  - type: Prayable
+    bibleUserOnly: true
+  - type: ReactionMixer
+    mixMessage: "bible-mixing-success"
+    reactionTypes:
+    - Holy
+  - type: Sprite
+    netsync: false
+    sprite: Objects/Specific/Chapel/orthodoxbible.rsi
+    state: icon
+  - type: Item
+    size: 15
+    sprite: Objects/Specific/Chapel/orthodoxbible.rsi
+  - type: Clothing
+    slots:
+    - Belt
+  - type: Storage
+    capacity: 10
+  - type: UserInterface
+    interfaces:
+    - key: enum.StorageUiKey.Key
+      type: StorageBoundUserInterface

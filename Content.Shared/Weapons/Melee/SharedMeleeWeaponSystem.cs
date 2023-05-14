@@ -710,6 +710,9 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
                 case "Brute":
                     Audio.PlayPredicted(new SoundPathSpecifier("/Audio/Weapons/smash.ogg"), target, user, AudioParams.Default.WithVariation(DamagePitchVariation));
                     break;
+                case "Nechisti":
+                    Audio.PlayPredicted(new SoundPathSpecifier("/Audio/Weapons/smash.ogg"), target, user, AudioParams.Default.WithVariation(DamagePitchVariation));
+                    break;
             }
         }
     }

@@ -6,3 +6,7 @@ ent-MobHumanNukeOp = Nuclear Operative
     .desc = { ent-MobHuman.desc }
 ent-MobHumanLoneNuclearOperative = Lone Operative
     .desc = { ent-MobHuman.desc }
+ent-MobHunter = Охотник на нечисть
+    .desc = { ent-MobHuman.desc }
+ent-MobHunterLeader = Лидер охотников на нечисть
+    .desc = { ent-MobHuman.desc }

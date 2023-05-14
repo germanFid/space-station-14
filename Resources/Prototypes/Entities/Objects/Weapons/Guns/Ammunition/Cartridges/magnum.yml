@@ -111,3 +111,11 @@
       color: goldenrod
   - type: CartridgeAmmo
     proto: AnomalousParticleZetaStrong
+
+- type: entity
+  id: CartridgeHolyMagnum
+  name: Holy cartridge (.45 magnum)
+  parent: BaseCartridgeMagnum
+  components:
+  - type: CartridgeAmmo
+    proto: HolyBulletMagnum

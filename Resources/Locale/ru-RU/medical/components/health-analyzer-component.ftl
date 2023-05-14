@@ -21,3 +21,5 @@ health-analyzer-window-damage-type-Poison = Яды
 health-analyzer-window-damage-type-Radiation = Радиация
 health-analyzer-window-damage-group-Genetic = Генетические
 health-analyzer-window-damage-type-Cellular = Клеточные
+health-analyzer-window-damage-type-Nechisti = Нечисть
+health-analyzer-window-damage-group-Evil = Нечисть

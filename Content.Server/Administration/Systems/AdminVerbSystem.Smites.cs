@@ -196,6 +196,19 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(disposalBin);
 
+        Verb revers = new()
+        {   Text = "Revert",
+            Category = VerbCategory.Smite,
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Structures/Piping/disposal.rsi"), "mailing"),
+            Act = () =>
+            {
+                _polymorphSystem.Revert(args.Target, null);
+            },
+            Impact = LogImpact.Extreme,
+            Message = Loc.GetString("admin-smite-revert-description")
+        };
+        args.Verbs.Add(revers);
+
         if (TryComp<DiseaseCarrierComponent>(args.Target, out var carrier))
         {
             Verb lungCancer = new()

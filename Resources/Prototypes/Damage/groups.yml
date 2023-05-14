@@ -35,3 +35,8 @@
   id: Genetic
   damageTypes:
     - Cellular
+
+- type: damageGroup
+  id: Evil
+  damageTypes:
+  - Nechisti

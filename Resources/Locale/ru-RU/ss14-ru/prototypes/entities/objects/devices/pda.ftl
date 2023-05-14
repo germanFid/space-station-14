@@ -89,3 +89,5 @@ ent-BrigmedicPDA = КПК бригмедика
 ent-CluwnePDA = КПК клувеня
     .desc = Проклятый КПК клувеня.
     .suffix = Неснимаемый
+ent-MonsterHunterPDA = КПК Охотника на нечисть
+    .desc = Почему он не серебряный?

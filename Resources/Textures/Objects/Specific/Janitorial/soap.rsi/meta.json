@@ -23,6 +23,9 @@
       "name": "omega"
     },
     {
+        "name": "alpha"
+    },
+    {
       "name": "syndie"
     },
     {
@@ -64,6 +67,14 @@
     {
       "name": "omega-inhand-right",
       "directions": 4
+    },
+    {
+        "name": "alpha-inhand-left",
+        "directions": 4
+    },
+    {
+        "name": "alpha-inhand-right",
+        "directions": 4
     },
     {
       "name": "syndie-inhand-left",

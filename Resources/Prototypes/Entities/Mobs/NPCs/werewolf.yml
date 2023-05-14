@@ -1,0 +1,99 @@
+- type: entity
+  name: Werewolf
+  id: MobWerewolf
+  parent: SimpleSpaceMobBase
+  description: It looks friendly. Why don't you give it a hug?
+  components:
+    - type: Faction
+      factions:
+        - Syndicate
+    - type: Speech
+    - type: CombatMode
+      disarmAction:
+        enabled: false
+        autoPopulate: false
+        name: action-name-disarm
+    - type: MobMover
+    - type: InputMover
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3
+      baseSprintSpeed: 5
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: Mobs/Aliens/werewolf.rsi
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: werewolf
+    - type: Appearance
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: werewolf
+        Dead:
+          Base: dead
+    - type: Physics
+      bodyType: KinematicController
+    - type: MobState
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        180: Critical
+        200: Dead
+    - type: Metabolizer
+      solutionOnBody: false
+      updateFrequency: 0.25
+      metabolizerTypes: [ Animal ]
+      groups:
+        - id: Medicine
+        - id: Poison
+    - type: MovementAlwaysTouching
+    - type: NoSlip
+    - type: MeleeWeapon
+      hidden: true
+      soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+      damage:
+        types:
+          Piercing: 9
+          Slash: 9
+    - type: Puller
+      needsHands: false
+    - type: Access
+      tags:
+      - Maintenance
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+    - type: Damageable
+      damageContainer: Vermin
+    - type: Werewolf
+      pupationAction:
+        event: !type:WerewolfPupationActionEvent
+        icon: Structures/Storage/pupa.rsi/filled.png
+        name: action-name-pupation
+        description: action-description-pupation
+        whitelist:
+          components:
+            - MobState
+      transformationAction:
+        event: !type:WerewolfTransformationInHumanEvent
+        icon: Mobs/Aliens/werewolf.rsi/icon.png
+        name: action-name-transformBack
+        description: action-description-transformBack
+      eatPupaAction:
+        event: !type:WerewolfEatPupaActionEvent
+        icon: Mobs/Aliens/buffedwerewolf.rsi/eaticon.png
+        name: action-name-eatpupa
+        description: action-description-eatpupa
+        whitelist:
+          components:
+            - Pupa
+      werewolfEvolveAction:
+        event: !type:WerewolfEvolveActionEvent
+        icon: Mobs/Aliens/buffedwerewolf.rsi/icon.png
+        name: action-name-evolve
+        description: action-description-evolve
+
+
+
+

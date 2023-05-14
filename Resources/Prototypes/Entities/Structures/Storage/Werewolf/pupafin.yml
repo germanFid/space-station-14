@@ -1,0 +1,37 @@
+- type: entity
+  id: PupaFinEntity
+  parent: BaseStructureDynamic
+  name: Stinky Pupa
+  description: A disgusting thing with something inside.
+  components:
+  - type: AmbientSound
+    range: 5
+    volume: -10
+    sound:
+      path: /Audio/Werewolf/readypupasound.ogg
+  - type: Pupa
+    State: PupaState.Finished
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    noRot: true
+    netsync: false
+    sprite: Structures/Storage/pupa.rsi
+    layers:
+    - state: ready
+  - type: InteractionOutline
+  - type: Physics
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Slime
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 800
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Werewolf/readypupadestroy.ogg

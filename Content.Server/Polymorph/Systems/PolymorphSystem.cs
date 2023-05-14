@@ -155,7 +155,7 @@ namespace Content.Server.Polymorph.Systems
                 _mobThreshold.GetScaledDamage(uid, child, out var damage) &&
                 damage != null)
             {
-                _damageable.SetDamage(child, damageParent, damage);
+                //Это ебаная хуйня не просто переносит дмаг, а меняет полностью все типы урона.
             }
 
             if (proto.Inventory == PolymorphInventoryChange.Transfer)
@@ -244,7 +244,7 @@ namespace Content.Server.Polymorph.Systems
                 _mobThreshold.GetScaledDamage(uid, parent, out var damage) &&
                 damage != null)
             {
-                _damageable.SetDamage(parent, damageParent, damage);
+
             }
 
             if (proto.Inventory == PolymorphInventoryChange.Transfer)

@@ -102,3 +102,18 @@
   - type: StepTrigger
   - type: Item
     heldPrefix: omega
+
+- type: entity
+  name: alpha soap
+  id: SoapAlpha
+  parent: Soap
+  description: The most advanced soap known to mankind. Smells of bluespace.
+  components:
+  - type: Sprite
+    state: alpha
+  - type: Slippery
+    paralyzeTime: 0.5
+    launchForwardsMultiplier: -9
+  - type: StepTrigger
+  - type: Item
+    heldPrefix: alpha

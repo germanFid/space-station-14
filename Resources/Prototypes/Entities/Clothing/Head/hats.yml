@@ -586,3 +586,25 @@
     sprite: Clothing/Head/Hats/hetman_hat.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/hetman_hat.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatHunter
+  name: Hunters hat
+  description: A great hat of a PMC member.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/hat_hunter.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/hat_hunter.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadLeaderHatHunter
+  name: Hunters leader hat
+  description: A great hat of a PMC leader.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/hat_hunters_leader.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/hat_hunters_leader.rsi

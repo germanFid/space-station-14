@@ -163,3 +163,34 @@
   - type: Storage
     capacity: 9999
 
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackSatchelLeather
+  id: ClothingBackpackSatchelHuntersFilled
+  components:
+    - type: StorageFill
+      contents:
+        - id: BoxSurvival
+        - id: WeaponRevolverInspector
+        - id: CartridgeHolyMagnum
+        - id: CartridgeHolyMagnum
+        - id: CartridgeHolyMagnum
+        - id: SilverSword
+        - id: Handcuffs
+        - id: mantrap
+        - id: HuntersContract
+
+- type: entity
+  noSpawn: true
+  parent: ClothingBackpackSatchelLeather
+  id: ClothingBackpackSatchelHuntersLeaderFilled
+  components:
+    - type: StorageFill
+      contents:
+        - id: BoxSurvival
+        - id: WeaponRevolverInspector
+        - id: SpeedLoaderMagnumHoly
+        - id: SilverSword
+        - id: Handcuffs
+        - id: OrthodoxBible
+        - id: HuntersContract

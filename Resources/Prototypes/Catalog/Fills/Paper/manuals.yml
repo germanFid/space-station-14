@@ -24,3 +24,27 @@
       type: PaperBoundUserInterface
   - type: Paper
     content: book-text-holoparasite-info
+
+- type: entity
+  parent: BaseItem
+  id: HuntersContract
+  name: Official сontract
+  description: Some bureaucratic bullshit.
+  components:
+  - type: Sprite
+    netsync: false
+    sprite: Objects/Misc/bureaucracy.rsi
+    layers:
+    - state: nano_paper
+    - state: paper_stamp-cent
+  - type: ActivatableUI
+    key: enum.PaperUiKey.Key
+  - type: UserInterface
+    interfaces:
+    - key: enum.PaperUiKey.Key
+      type: PaperBoundUserInterface
+  - type: Paper
+    content: paper-text-hunter-contract
+    stampState: paper_stamp-cent
+    stampedBy:
+      - Центральное командование
