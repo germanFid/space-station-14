@@ -29,7 +29,7 @@ public sealed class WerewolfRuleSystem : GameRuleSystem<WerewolfComponent>
     }
     public void MakeWerewolfPlayer (MindComponent mind)
     {
-        if (mind.Mind!.OwnedEntity != null)
+        if (mind.Mind!.OwnedEntity != null && !EntityManager.HasComponent<WerewolfComponent>((EntityUid) mind.Mind.OwnedEntity))
         {
 
             var action = new InstantAction(_prototypeManager.Index<InstantActionPrototype>("TransformToWerwolf"));
