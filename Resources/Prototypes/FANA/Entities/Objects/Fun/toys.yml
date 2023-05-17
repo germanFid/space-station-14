@@ -1,0 +1,53 @@
+- type: entity
+  parent: BasePlushie
+  id: PlushieOleg
+  name: плюшевый Старший Инженер
+  description: Вы только посмотрите на него! И это старший инженер?! Больше напоминает неопытного ассистента. И как его только допустили к такой должности?..
+  components:
+  - type: Sprite
+    state: plushie-chiefengineer
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieQM
+  name: плюшевый Квартирмейстер
+  description: Вам на мгновение показалось, что этот человек вам знаком, но вы никак не можете вспомнить его имя. Где же вы его уже видели?..
+  components:
+  - type: Sprite
+    state: plushie-qm
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieHira
+  name: плюшевый Хира
+  description: Хочешь знать, откуда эти шшшрамы?
+  components:
+  - type: Sprite
+    state: plushie-hira
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieChach
+  name: плюшевый Чат
+  description: Адепт алкоголизма, последователь Бахуса. Проникнитесь его верой, сделайтесь новым прозелитом, и, в конце концов, растворитесь в алкоголе. Добро пожаловать домой, неофит.
+  components:
+  - type: Sprite
+    state: plushie-chach
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieVice
+  name: плюшевый Лаврентий Вайс
+  description: Твой лучший друг. Лауреат премии за самую кровожадную улыбку галактики.
+  components:
+  - type: Sprite
+    state: plushie-vice
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieTimofey
+  name: плюшевый Капитан Гнида
+  description: Если это ваш капитан, немедленно выбрасывайтесь в космос. Или выбрасывайте его. Лучше второе.
+  components:
+  - type: Sprite
+    state: plushie-timofey

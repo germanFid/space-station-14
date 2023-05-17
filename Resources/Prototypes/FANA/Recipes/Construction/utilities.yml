@@ -1,0 +1,20 @@
+- type: construction
+  id: GasTValve
+  name: manual t-valve
+  description: A pipe with a valve that can be used to disable the flow of gas through it.
+  graph: GasTrinary
+  startNode: start
+  targetNode: t-valve
+  category: construction-category-utilities
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  icon:
+    sprite: Structures/Piping/Atmospherics/tvalve.rsi
+    state: tValveOn
+  layers:
+  - sprite: Structures/Piping/Atmospherics/tvalve.rsi
+    state: pipe
+  - sprite: Structures/Piping/Atmospherics/tvalve.rsi
+    state: tValveOn
+  conditions:
+    - !type:TileNotBlocked {}

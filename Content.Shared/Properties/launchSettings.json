@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "Content.Shared": {
+      "commandName": "Project"
+    }
+  }
+}
