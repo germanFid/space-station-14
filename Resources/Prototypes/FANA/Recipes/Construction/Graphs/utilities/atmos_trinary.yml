@@ -1,15 +1,1 @@
-  - node: t-valve
-    entity: GasTValve
-    edges:
-    - to: start
-      conditions:
-      - !type:EntityAnchored
-        anchored: false
-      completed:
-      - !type:SpawnPrototype
-        prototype: SheetSteel1
-        amount: 2
-      - !type:DeleteEntity
-      steps:
-      - tool: Welding
-        doAfter: 1
+
