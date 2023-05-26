@@ -4,13 +4,27 @@
   graph:
   - node: start
     edges:
+    # Filter
     - to: filter
       steps:
       - material: Steel
         amount: 2
         doAfter: 1
 
+    - to: filterflipped
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+    # Mixer
     - to: mixer
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+
+    - to: mixerflipped
       steps:
       - material: Steel
         amount: 2
@@ -22,15 +36,7 @@
         amount: 2
         doAfter: 1
 
-# FANA CONTENT START
-    - to: t-valve
-      steps:
-      - material: Steel
-        amount: 2
-        doAfter: 1
-
-# FANA CONTENT END
-
+  # Filter
   - node: filter
     entity: GasFilter
     edges:
@@ -47,6 +53,23 @@
       - tool: Welding
         doAfter: 1
 
+  - node: filterflipped
+    entity: GasFilterFlipped
+    edges:
+    - to: start
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Welding
+        doAfter: 1
+
+  # Mixer
   - node: mixer
     entity: GasMixer
     edges:
@@ -63,8 +86,8 @@
       - tool: Welding
         doAfter: 1
 
-  - node: pneumaticvalve
-    entity: PressureControlledValve
+  - node: mixerflipped
+    entity: GasMixerFlipped
     edges:
     - to: start
       conditions:
@@ -79,9 +102,8 @@
       - tool: Welding
         doAfter: 1
 
-# FANA CONTENT
-  - node: t-valve
-    entity: GasTValve
+  - node: pneumaticvalve
+    entity: PressureControlledValve
     edges:
     - to: start
       conditions:
