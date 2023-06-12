@@ -1,0 +1,40 @@
+- type: entity
+  id: PupaEntity
+  parent: BaseStructureDynamic
+  name: Pupa
+  description: A disgusting thing with somebody inside.
+  components:
+  - type: AmbientSound
+    range: 5
+    volume: -8
+    sound:
+      path: /Audio/FANA/Werewolf/pupasound.ogg
+  - type: Pupa
+  - type: Transform
+    noRot: true
+  - type: Sprite
+    noRot: true
+    netsync: false
+    sprite: Structures/Storage/pupa.rsi
+    layers:
+    - state: filled
+  - type: MovedByPressure
+  - type: InteractionOutline
+  - type: Physics
+  - type: EntityStorage
+    isWeldedShut: true
+  - type: AntiRottingContainer
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Slime
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/FANA/Werewolf/pupadestroy.ogg

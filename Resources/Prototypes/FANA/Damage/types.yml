@@ -1,0 +1,4 @@
+- type: damageType
+  id: Nechisti
+  armorCoefficientPrice: 1
+  armorFlatPrice: 1

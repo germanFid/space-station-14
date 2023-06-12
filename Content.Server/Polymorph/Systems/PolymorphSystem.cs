@@ -155,7 +155,11 @@ namespace Content.Server.Polymorph.Systems
                 _mobThreshold.GetScaledDamage(uid, child, out var damage) &&
                 damage != null)
             {
-                _damageable.SetDamage(child, damageParent, damage);
+//FANA CONTENT STARTS
+                damageParent.Damage.ExclusiveSet(damage);
+                _damageable.DamageChanged(child, damageParent);
+                //_damageable.SetDamage(child, damageParent, damage);
+//FANA CONTENT ENDS
             }
 
             if (proto.Inventory == PolymorphInventoryChange.Transfer)
@@ -244,7 +248,11 @@ namespace Content.Server.Polymorph.Systems
                 _mobThreshold.GetScaledDamage(uid, parent, out var damage) &&
                 damage != null)
             {
-                _damageable.SetDamage(parent, damageParent, damage);
+//FANA CONTENT STARTS
+                damageParent.Damage.ExclusiveSet(damage);
+                _damageable.DamageChanged(parent, damageParent);
+                //_damageable.SetDamage(parent, damageParent, damage);
+//FANA CONTENT ENDS
             }
 
             if (proto.Inventory == PolymorphInventoryChange.Transfer)

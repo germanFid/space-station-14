@@ -1,0 +1,17 @@
+- type: polymorph
+  id: WerewolfPoly
+  entity: MobWerewolf
+  forced: true
+  inventory: None
+  transferName: false
+  revertOnCrit: false
+  revertOnDeath: true
+
+- type: polymorph
+  id: WerewolfEvolvePoly
+  entity: MobBuffedwerewolf
+  forced: true
+  inventory: None
+  transferName: false
+  revertOnCrit: false
+  revertOnDeath: true

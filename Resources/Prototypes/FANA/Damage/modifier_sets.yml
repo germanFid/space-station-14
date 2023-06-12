@@ -1,0 +1,12 @@
+- type: damageModifierSet
+  id: BuffWerewolf
+  coefficients:
+    Blunt: 0.9
+    Slash: 0.9
+    Piercing: 0.9
+    Heat: 1.15
+    Bloodloss: 0.0
+  flatReductions:
+    Blunt: 1.5
+    Slash: 1.5
+    Piercing: 1.5

@@ -1,0 +1,6 @@
+- type: instantAction
+  id: TransformToWerwolf
+  name: action-name-werwolftransformation
+  description: action-desc-werwolftransformation
+  icon: { sprite: Mobs/Aliens/werewolf.rsi, state: icon }
+  event: !type:TransformToWerwolfEvent

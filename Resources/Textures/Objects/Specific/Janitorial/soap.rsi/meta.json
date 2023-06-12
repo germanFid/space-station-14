@@ -72,6 +72,17 @@
     {
       "name": "syndie-inhand-right",
       "directions": 4
+    },
+    {
+        "name": "alpha"
+    },
+    {
+        "name": "alpha-inhand-left",
+        "directions": 4
+    },
+    {
+        "name": "alpha-inhand-right",
+        "directions": 4
     }
   ]
 }

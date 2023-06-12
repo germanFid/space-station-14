@@ -16,6 +16,9 @@ public sealed partial class AdminVerbSystem
     [Dependency] private readonly TraitorRuleSystem _traitorRule = default!;
     [Dependency] private readonly NukeopsRuleSystem _nukeopsRule = default!;
     [Dependency] private readonly PiratesRuleSystem _piratesRule = default!;
+//FANA CONTENT STARTS
+    [Dependency] private readonly WerewolfRuleSystem _werewolfRule = default!;
+//FANA CONTENT ENDS
 
     // All antag verbs have names so invokeverb works.
     private void AddAntagVerbs(GetVerbsEvent<Verb> args)
@@ -98,5 +101,23 @@ public sealed partial class AdminVerbSystem
         };
         args.Verbs.Add(pirate);
 
+//FANA CONTENT STARTS
+        Verb werewolf = new()
+        {
+            Text = "Make Werewolf",
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi((new ResPath("/Textures/Mobs/Aliens/werewolf.rsi")), "dead"),
+            Act = () =>
+            {
+                if (targetMindComp.Mind == null || targetMindComp.Mind.Session == null || targetMindComp.Mind.OwnedEntity == null)
+                    return;
+                _werewolfRule.MakeWerewolfPlayer(targetMindComp);
+            },
+            Impact = LogImpact.High,
+            Message = Loc.GetString("admin-verb-make-werewolf"),
+
+        };
+        args.Verbs.Add(werewolf);
+//FANA CONTENT ENDS
     }
 }
