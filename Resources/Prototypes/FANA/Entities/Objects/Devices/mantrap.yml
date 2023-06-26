@@ -10,6 +10,7 @@
       drawdepth: SmallMobs
       layers:
         - state: mantrap
+          map: ["base"]
     - type: StepTrigger
       intersectRatio: 0.2
       requiredTriggeredSpeed: 0
@@ -26,13 +27,12 @@
     - type: Item
       sprite: Objects/Devices/mantrap.rsi
     - type: Appearance
+    - type: GenericVisualizer
       visuals:
-        - type: GenericEnumVisualizer
-          key: enum.MantrapVisuals.Visual
-          layer: 0
-          states:
-            enum.MantrapVisuals.Armed: mantraparmed
-            enum.MantrapVisuals.Unarmed: mantrap
+        enum.MantrapVisuals.Visual:
+          base:
+            Armed: { state: mantraparmed }
+            Unarmed: { state: mantrap }
     - type: Physics
       bodyType: Dynamic
     - type: CollisionWake

@@ -55,9 +55,9 @@ public sealed class MantrapSystem : EntitySystem
      private void OnCharge(EntityUid uid, MantrapComponent component, DoAfterEvent args)
     {
         if (args.Handled || args.Cancelled)
-                return;
+            return;
 
-            args.Handled = true;
+        args.Handled = true;
         component.IsActive = !component.IsActive;
         _popupSystem.PopupEntity(component.IsActive
             ? Loc.GetString("mantrap-on-activate")
@@ -77,5 +77,6 @@ public sealed class MantrapSystem : EntitySystem
 
         _appearance.SetData(uid, MantrapVisuals.Visual,
             mantrap.IsActive ? MantrapVisuals.Armed : MantrapVisuals.Unarmed, appearance);
+        Dirty(uid);
     }
 }
