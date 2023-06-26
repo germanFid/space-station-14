@@ -1,0 +1,11 @@
+- type: entity
+  parent: BasePDA
+  id: MonsterHunterPDA
+  name: Monster hunter PDA
+  description: Why isn't it silver?
+  components:
+  - type: PDA
+    id: HunterIDCard
+    state: pda-hunter
+  - type: PDABorderColor
+    borderColor: "#141089"

@@ -1,0 +1,6 @@
+- type: antag
+  id: Werewolf
+  name: roles-antag-werewolf-name
+  antagonist: true
+  setPreference: false
+  objective: roles-antag-werewolf-objective

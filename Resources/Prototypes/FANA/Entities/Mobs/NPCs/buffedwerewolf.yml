@@ -1,0 +1,98 @@
+- type: entity
+  name: BuffedWerewolf
+  id: MobBuffedwerewolf
+  parent: SimpleSpaceMobBase
+  description: It looks NOT friendly. DON'T  give it a hug!
+  components:
+    - type: Faction
+      factions:
+        - Syndicate
+    - type: Speech
+    - type: CombatMode
+      disarmAction:
+        enabled: false
+        autoPopulate: false
+        name: action-name-disarm
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2.5
+      baseSprintSpeed: 4.25
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: Mobs/Aliens/buffedwerewolf.rsi
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: buffedwerewolf
+    - type: Appearance
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: buffedwerewolf
+        Dead:
+          Base: dead
+    - type: Physics
+      bodyType: KinematicController
+    - type: MobState
+    - type: HealthExaminable
+      examinableTypes:
+      - Blunt
+      - Slash
+      - Piercing
+      - Heat
+      - Shock
+      - Nechisti
+    - type: Damageable
+      damageContainer: Vermin
+      damageModifierSet: BuffWerewolf
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        575: Critical
+        600: Dead
+    - type: StatusEffects
+      allowed:
+      - SlowedDown
+      - Electrocution
+    - type: FlashImmunity
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        300: 0.9
+        400: 0.7
+        500: 0.5
+    - type: MovementAlwaysTouching
+    - type: NoSlip
+    - type: MeleeWeapon
+      hidden: true
+      soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+      damage:
+        types:
+          Piercing: 15
+          Slash: 15
+          Structural : 30
+    - type: Puller
+      needsHands: false
+    - type: Respirator
+      damage:
+        types:
+          Asphyxiation: 0.0
+      damageRecovery:
+        types:
+          Asphyxiation: -0.5
+          Bloodloss: -0.5
+          Poison: -0.5
+          Radiation: -0.5
+          Blunt: -0.5
+          Slash: -0.5
+          Piercing: -0.5
+          Heat: -0.5
+          Shock: -0.5
+          Cold: -0.5
+    - type: Werewolf
+      eatWallAction:
+        event: !type:WerewolfDestroyWallsEvent
+        icon: Objects/Materials/materials.rsi/ash.png
+        name: action-name-eatwallwerewolf
+        description: action-description-eatwallwerewolf
+        whitelist:
+          tags:
+            - Wall

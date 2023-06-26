@@ -1,0 +1,30 @@
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitHunter
+  name: Hunters jumpsuit
+  description: The uniform of a great PMC member.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpsuit/hunter.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpsuit/hunter.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitHuntersLeader
+  name: Hunters leader jumpsuit
+  description: The uniform of a great PMC leader.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpsuit/huntersleader.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpsuit/huntersleader.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.5
+        Slash: 0.5
+        Piercing: 0.5
+        Heat: 0.6
+        Cold: 0.6
+        Radiation: 0.8

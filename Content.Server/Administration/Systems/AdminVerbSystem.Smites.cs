@@ -798,5 +798,19 @@ public sealed partial class AdminVerbSystem
             Message = Loc.GetString("admin-smite-super-speed-description"),
         };
         args.Verbs.Add(superSpeed);
+//FANA CONTENT STARTS
+        Verb revers = new()
+        {   Text = "Revert",
+            Category = VerbCategory.Smite,
+            Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Structures/Piping/disposal.rsi"), "mailing"),
+            Act = () =>
+            {
+                _polymorphSystem.Revert(args.Target, null);
+            },
+            Impact = LogImpact.Extreme,
+            Message = Loc.GetString("admin-smite-revert-description")
+        };
+        args.Verbs.Add(revers);
+//FANA CONTENT ENDS
     }
 }

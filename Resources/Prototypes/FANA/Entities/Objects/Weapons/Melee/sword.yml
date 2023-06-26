@@ -1,0 +1,22 @@
+- type: entity
+  name: Silver sword
+  parent: BaseItem
+  id: SilverSword
+  description: Ancient sword against vermin.
+  components:
+  - type: Sharp
+  - type: Tag
+    tags:
+    - CaptainSabre
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/silver_sword.rsi
+    state: icon
+  - type: MeleeWeapon
+    damage:
+      types:
+        Slash: 3
+        Nechisti: 20
+  - type: Item
+    size: 15
+    sprite: Objects/Weapons/Melee/silver_sword.rsi
+  - type: DisarmMalus

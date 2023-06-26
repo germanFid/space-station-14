@@ -1,0 +1,16 @@
+- type: entity
+  parent: IDCardStandard
+  id: HunterIDCard
+  name: Monster Hunter ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: silver
+    - state: idhunter
+  - type: Item
+    heldPrefix: silver
+  - type: IdCard
+    jobTitle: Monster Hunter
+  - type: Access
+    groups:
+    - AllAccess

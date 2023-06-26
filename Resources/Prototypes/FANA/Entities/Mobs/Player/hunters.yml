@@ -1,0 +1,68 @@
+#Hunters
+- type: entity
+  parent: MobHuman
+  id: MobHunter
+  name: Monster Hunter
+  components:
+    - type: Loadout
+      prototypes: [ HunterGear ]
+    - type: RandomMetadata
+      nameSegments:
+      - Orthodox
+      - OldSlavicLastName
+    - type: Faction
+      factions:
+      - MonsterHunter
+    - type: GhostRole
+      name: Охотник на нечисть
+      description: Прогони всю нечисть со станции
+    - type: GhostTakeoverAvailable
+
+- type: startingGear
+  id: HunterGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHunter
+    back: ClothingBackpackSatchelHuntersFilled
+    shoes: ClothingShoesBootsJack
+    head: ClothingHeadHatHunter
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesColorBlack
+    neck: ClothingCloakHunter
+    outerclothing: ClothingOuterVestKevlar
+    id: MonsterHunterPDA
+    ears: ClothingHeadsetAltCommand
+    pocket1: Torch
+
+- type: entity
+  parent: MobHuman
+  id: MobHunterLeader
+  name: Monster Hunters Leader
+  components:
+    - type: Loadout
+      prototypes: [ HuntersLeaderGear ]
+    - type: RandomMetadata
+      nameSegments:
+      - OrthodoxLeader
+      - OldSlavicLastName
+    - type: Faction
+      factions:
+      - MonsterHunter
+    - type: GhostRole
+      name: Лидер охотников на нечисть
+      description: Приведи свой отряд на станцию и разберись со всей нечистью.
+    - type: GhostTakeoverAvailable
+    - type: BibleUser
+
+- type: startingGear
+  id: HuntersLeaderGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHuntersLeader
+    back: ClothingBackpackSatchelHuntersLeaderFilled
+    shoes: ClothingShoesBootsJack
+    head: ClothingHeadLeaderHatHunter
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesColorBlack
+    outerclothing: ClothingOuterVestKevlar
+    id: MonsterHunterPDA
+    ears: ClothingHeadsetAltCommand
+    pocket1: Torch

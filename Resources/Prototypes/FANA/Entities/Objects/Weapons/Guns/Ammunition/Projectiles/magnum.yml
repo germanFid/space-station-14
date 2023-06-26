@@ -1,0 +1,11 @@
+- type: entity
+  id: HolyBulletMagnum
+  name: bullet (.45 magnum)
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 3
+        Nechisti: 50

@@ -231,6 +231,26 @@ namespace Content.Shared.Damage
             }
         }
 
+//FANA CONTENT STARTS
+        /// <summary>
+        ///     This sets the damage values of some other <see cref="DamageSpecifier"/> to the current one without
+        ///     adding/removing any damage types.
+        /// </summary>
+        /// <remarks>
+        ///     This is used for <see cref="DamageableComponent"/>s, such that only "supported" damage types are
+        ///     actually transferred to the component.
+        /// </remarks>
+        public void ExclusiveSet(DamageSpecifier other)
+        {
+            foreach (var (type, value) in other.DamageDict)
+            {
+                if (DamageDict.ContainsKey(type))
+                {
+                    DamageDict[type] = value;
+                }
+            }
+        }
+//FANA CONTENT ENDS
         /// <summary>
         ///     Add up all the damage values for damage types that are members of a given group.
         /// </summary>
