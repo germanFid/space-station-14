@@ -16,7 +16,7 @@ namespace Content.Server.Administration.Commands
 
         public void Execute(IConsoleShell shell, string argStr, string[] args)
         {
-            if (!(shell.Player is IPlayerSession))
+            if (shell.Player is not IPlayerSession)
             {
                 shell.WriteError(Loc.GetString("shell-only-players-can-run-this-command"));
                 return;

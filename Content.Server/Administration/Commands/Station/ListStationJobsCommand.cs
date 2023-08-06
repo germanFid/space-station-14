@@ -25,7 +25,8 @@ public sealed class ListStationJobsCommand : IConsoleCommand
             return;
         }
 
-        var stationSystem = _entSysManager.GetEntitySystem<StationSystem>();
+        //! unused
+        //x var stationSystem = _entSysManager.GetEntitySystem<StationSystem>();
         var stationJobs = _entSysManager.GetEntitySystem<StationJobsSystem>();
 
         if (!EntityUid.TryParse(args[0], out var station) || !_entityManager.HasComponent<StationJobsComponent>(station))

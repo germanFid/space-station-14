@@ -27,8 +27,7 @@ namespace Content.Server.Administration.Commands
 
         public void Execute(IConsoleShell shell, string argStr, string[] args)
         {
-            var player = shell.Player as IPlayerSession;
-            if (player == null)
+            if (shell.Player is not IPlayerSession player)
             {
                 shell.WriteLine("Only players can use this command");
                 return;
@@ -61,7 +60,7 @@ namespace Content.Server.Administration.Commands
                 var found = _entManager.EntityQuery<WarpPointComponent>(true)
                     .Where(p => p.Location == location)
                     .Select(p => (_entManager.GetComponent<TransformComponent>(p.Owner).Coordinates, p.Follow))
-                    .OrderBy(p => p.Item1, Comparer<EntityCoordinates>.Create((a, b) =>
+                    .OrderBy(p => p.Coordinates, Comparer<EntityCoordinates>.Create((a, b) =>
                     {
                         // Sort so that warp points on the same grid/map are first.
                         // So if you have two maps loaded with the same warp points,

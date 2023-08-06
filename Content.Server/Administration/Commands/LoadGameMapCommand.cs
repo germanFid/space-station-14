@@ -91,8 +91,9 @@ namespace Content.Server.Administration.Commands
         public void Execute(IConsoleShell shell, string argStr, string[] args)
         {
             var prototypeManager = IoCManager.Resolve<IPrototypeManager>();
-            var entityManager = IoCManager.Resolve<IEntityManager>();
-            var gameTicker = entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
+            //! unused
+            //x var entityManager = IoCManager.Resolve<IEntityManager>();
+            //x var gameTicker = entityManager.EntitySysManager.GetEntitySystem<GameTicker>();
 
             if (args.Length != 0)
             {
