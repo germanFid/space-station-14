@@ -44,7 +44,7 @@ public sealed class PlayGlobalSoundCommand : IConsoleCommand
 
             // One or more users specified.
             default:
-                var volumeOffset = 0;
+                int volumeOffset;
 
                 // Try to specify a new volume to play it at.
                 if (int.TryParse(args[1], out var volume))
