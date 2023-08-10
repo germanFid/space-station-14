@@ -1,11 +1,10 @@
-﻿using Content.Shared.Damage;
+using Content.Shared.Damage;
 
-namespace Content.Server.Armor
+namespace Content.Server.Armor;
+
+[RegisterComponent]
+public sealed class ArmorComponent : Component
 {
-    [RegisterComponent]
-    public sealed class ArmorComponent : Component
-    {
-        [DataField("modifiers", required: true)]
-        public DamageModifierSet Modifiers = default!;
-    }
+    [DataField("modifiers", required: true)]
+    public DamageModifierSet Modifiers = default!;
 }
