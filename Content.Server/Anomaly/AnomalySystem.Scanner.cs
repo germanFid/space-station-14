@@ -1,4 +1,4 @@
-﻿using Content.Server.Anomaly.Components;
+using Content.Server.Anomaly.Components;
 using Content.Shared.Anomaly;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.DoAfter;
@@ -138,9 +138,9 @@ public sealed partial class AnomalySystem
         if (anomalyComp.Stability < anomalyComp.DecayThreshold)
             stateLoc = Loc.GetString("anomaly-scanner-stability-low");
         else if (anomalyComp.Stability > anomalyComp.GrowthThreshold)
-            stateLoc =  Loc.GetString("anomaly-scanner-stability-high");
+            stateLoc = Loc.GetString("anomaly-scanner-stability-high");
         else
-            stateLoc =  Loc.GetString("anomaly-scanner-stability-medium");
+            stateLoc = Loc.GetString("anomaly-scanner-stability-medium");
         msg.AddMarkup(stateLoc);
         msg.PushNewline();
 

@@ -1,4 +1,4 @@
-﻿using Content.Shared.Anomaly;
+using Content.Shared.Anomaly;
 using Content.Shared.Construction.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
@@ -56,7 +56,7 @@ public sealed class AnomalyVesselComponent : Component
     /// <summary>
     /// When the next beep sound will play
     /// </summary>
-    [DataField("nextBeep", customTypeSerializer:typeof(TimeOffsetSerializer))]
+    [DataField("nextBeep", customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan NextBeep = TimeSpan.Zero;
 
     /// <summary>

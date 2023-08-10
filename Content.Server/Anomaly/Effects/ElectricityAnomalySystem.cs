@@ -1,5 +1,5 @@
-﻿using Content.Server.Electrocution;
-﻿using Content.Server.Emp;
+using Content.Server.Electrocution;
+using Content.Server.Emp;
 using Content.Server.Lightning;
 using Content.Server.Power.Components;
 using Content.Shared.Anomaly.Components;

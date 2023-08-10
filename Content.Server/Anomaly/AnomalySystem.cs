@@ -1,4 +1,4 @@
-﻿using Content.Server.Anomaly.Components;
+using Content.Server.Anomaly.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Audio;
 using Content.Server.Explosion.EntitySystems;
@@ -51,7 +51,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
     private void OnMapInit(EntityUid uid, AnomalyComponent component, MapInitEvent args)
     {
         component.NextPulseTime = Timing.CurTime + GetPulseLength(component) * 3; // longer the first time
-        ChangeAnomalyStability(uid, Random.NextFloat(component.InitialStabilityRange.Item1 , component.InitialStabilityRange.Item2), component);
+        ChangeAnomalyStability(uid, Random.NextFloat(component.InitialStabilityRange.Item1, component.InitialStabilityRange.Item2), component);
         ChangeAnomalySeverity(uid, Random.NextFloat(component.InitialSeverityRange.Item1, component.InitialSeverityRange.Item2), component);
 
         var particles = new List<AnomalousParticleType>
