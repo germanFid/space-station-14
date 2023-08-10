@@ -1,22 +1,21 @@
-using Content.Shared.Alert;
 using Content.Server.Abilities.Mime;
+using Content.Shared.Alert;
 
-namespace Content.Server.Alert.Click
+namespace Content.Server.Alert.Click;
+
+///<summary>
+/// Retake your mime vows
+///</summary>
+[DataDefinition]
+public sealed class RetakeVow : IAlertClick
 {
-    ///<summary>
-    /// Retake your mime vows
-    ///</summary>
-    [DataDefinition]
-    public sealed class RetakeVow : IAlertClick
+    public void AlertClicked(EntityUid player)
     {
-        public void AlertClicked(EntityUid player)
-        {
-            var entManager = IoCManager.Resolve<IEntityManager>();
+        var entManager = IoCManager.Resolve<IEntityManager>();
 
-           if (entManager.TryGetComponent<MimePowersComponent?>(player, out var mimePowers))
-           {
-                entManager.System<MimePowersSystem>().RetakeVow(player, mimePowers);
-           }
+        if (entManager.TryGetComponent<MimePowersComponent?>(player, out var mimePowers))
+        {
+            entManager.System<MimePowersSystem>().RetakeVow(player, mimePowers);
         }
     }
 }
