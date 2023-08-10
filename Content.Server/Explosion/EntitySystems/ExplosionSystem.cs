@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.Administration.Logs;
+using Content.Server.Armor;
 using Content.Server.Atmos.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.Explosion.Components;
