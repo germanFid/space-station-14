@@ -9,7 +9,7 @@ public sealed class ArcadeOverflowWireAction : BaseToggleWireAction
 {
     public override Color Color { get; set; } = Color.Red;
     public override string Name { get; set; } = "wire-name-arcade-overflow";
-    
+
     public override object? StatusKey { get; } = SharedSpaceVillainArcadeComponent.Indicators.HealthLimiter;
 
     public override void ToggleValue(EntityUid owner, bool setting)
