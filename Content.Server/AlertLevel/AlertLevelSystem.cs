@@ -1,9 +1,8 @@
-using System.Linq;
 using Content.Server.Chat.Systems;
 using Content.Server.Station.Systems;
 using Content.Shared.PDA;
-using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
+using System.Linq;
 
 namespace Content.Server.AlertLevel;
 
@@ -33,8 +32,7 @@ public sealed class AlertLevelSystem : EntitySystem
     public override void Update(float time)
     {
         var query = EntityQueryEnumerator<AlertLevelComponent>();
-
-        while (query.MoveNext(out var station, out var alert))
+        while (query.MoveNext(out _, out var alert))
         {
             if (alert.CurrentDelay <= 0)
             {
@@ -56,9 +54,7 @@ public sealed class AlertLevelSystem : EntitySystem
             return;
 
         if (!_prototypeManager.TryIndex(alertLevelComponent.AlertLevelPrototype, out AlertLevelPrototype? alerts))
-        {
             return;
-        }
 
         alertLevelComponent.AlertLevels = alerts;
 
@@ -76,9 +72,7 @@ public sealed class AlertLevelSystem : EntitySystem
         if (!args.ByType.TryGetValue(typeof(AlertLevelPrototype), out var alertPrototypes)
             || !alertPrototypes.Modified.TryGetValue(DefaultAlertLevelSet, out var alertObject)
             || alertObject is not AlertLevelPrototype alerts)
-        {
             return;
-        }
 
         foreach (var comp in EntityQuery<AlertLevelComponent>())
         {
@@ -102,9 +96,7 @@ public sealed class AlertLevelSystem : EntitySystem
     public float GetAlertLevelDelay(EntityUid station, AlertLevelComponent? alert = null)
     {
         if (!Resolve(station, ref alert))
-        {
             return float.NaN;
-        }
 
         return alert.CurrentDelay;
     }
@@ -125,18 +117,14 @@ public sealed class AlertLevelSystem : EntitySystem
             || component.AlertLevels == null
             || !component.AlertLevels.Levels.TryGetValue(level, out var detail)
             || component.CurrentLevel == level)
-        {
             return;
-        }
 
         if (!force)
         {
             if (!detail.Selectable
                 || component.CurrentDelay > 0
                 || component.IsLevelLocked)
-            {
                 return;
-            }
 
             component.CurrentDelay = AlertLevelComponent.Delay;
             component.ActiveDelay = true;
@@ -171,7 +159,9 @@ public sealed class AlertLevelSystem : EntitySystem
             if (detail.Sound != null)
             {
                 var filter = _stationSystem.GetInOwningStation(station);
-                SoundSystem.Play(detail.Sound.GetSound(), filter, detail.Sound.Params);
+                var sharedAudioSystem = IoCManager.Resolve<SharedAudioSystem>();
+                sharedAudioSystem.PlayGlobal(detail.Sound, filter, false);
+                //SoundSystem.Play(detail.Sound.GetSound(), filter, detail.Sound.Params);
             }
             else
             {
@@ -188,18 +178,18 @@ public sealed class AlertLevelSystem : EntitySystem
         RaiseLocalEvent(new AlertLevelChangedEvent(station, level));
 
         var pdas = EntityQueryEnumerator<PDAComponent>();
-        while (pdas.MoveNext(out var ent, out var comp))
+        while (pdas.MoveNext(out var ent, out _))
         {
-            RaiseLocalEvent(ent,new AlertLevelChangedEvent(station, level));
+            RaiseLocalEvent(ent, new AlertLevelChangedEvent(station, level));
         }
     }
 }
 
 public sealed class AlertLevelDelayFinishedEvent : EntityEventArgs
-{}
+{ }
 
 public sealed class AlertLevelPrototypeReloadedEvent : EntityEventArgs
-{}
+{ }
 
 public sealed class AlertLevelChangedEvent : EntityEventArgs
 {
