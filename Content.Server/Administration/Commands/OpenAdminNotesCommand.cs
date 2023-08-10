@@ -1,5 +1,4 @@
-﻿using Content.Server.Administration.Notes;
-using Content.Server.Database;
+using Content.Server.Administration.Notes;
 using Content.Shared.Administration;
 using Robust.Server.Player;
 using Robust.Shared.Console;

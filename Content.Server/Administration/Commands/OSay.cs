@@ -1,9 +1,9 @@
-using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
 using Content.Shared.Administration;
 using Content.Shared.Database;
 using Robust.Shared.Console;
+using System.Linq;
 
 namespace Content.Server.Administration.Commands;
 
@@ -24,7 +24,7 @@ public sealed class OSay : LocalizedCommands
 
         if (args.Length == 2)
         {
-            return CompletionResult.FromHintOptions( Enum.GetNames(typeof(InGameICChatType)),
+            return CompletionResult.FromHintOptions(Enum.GetNames(typeof(InGameICChatType)),
                 Loc.GetString("osay-command-arg-type"));
         }
 

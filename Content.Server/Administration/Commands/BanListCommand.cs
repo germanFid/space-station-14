@@ -1,10 +1,10 @@
-﻿using System.Linq;
 using Content.Server.Administration.BanList;
 using Content.Server.Database;
 using Content.Server.EUI;
 using Content.Shared.Administration;
 using Robust.Server.Player;
 using Robust.Shared.Console;
+using System.Linq;
 
 namespace Content.Server.Administration.Commands;
 

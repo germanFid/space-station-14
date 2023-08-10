@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
 using Content.Server.Database;
 using Content.Shared.Administration.Notes;
 using Robust.Server.Player;
+using System.Threading.Tasks;
 
 namespace Content.Server.Administration.Notes;
 

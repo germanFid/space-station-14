@@ -1,6 +1,3 @@
-﻿using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Content.Server.Administration.Managers;
 using Content.Server.EUI;
 using Content.Server.GameTicking;
@@ -13,6 +10,9 @@ using Microsoft.Extensions.ObjectPool;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using static Content.Shared.Administration.Logs.AdminLogsEuiMsg;
 
 namespace Content.Server.Administration.Logs;
@@ -23,6 +23,7 @@ public sealed class AdminLogsEui : BaseEui
     [Dependency] private readonly IAdminManager _adminManager = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IConfigurationManager _configuration = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
 
     private readonly ISawmill _sawmill;
 
@@ -51,7 +52,7 @@ public sealed class AdminLogsEui : BaseEui
         };
     }
 
-    private int CurrentRoundId => EntitySystem.Get<GameTicker>().RoundId;
+    private int CurrentRoundId => _entityManager.System<GameTicker>().RoundId;
 
     public override async void Opened()
     {
@@ -96,48 +97,46 @@ public sealed class AdminLogsEui : BaseEui
         base.HandleMessage(msg);
 
         if (!_adminManager.HasAdminFlag(Player, AdminFlags.Logs))
-        {
             return;
-        }
 
         switch (msg)
         {
             case LogsRequest request:
-            {
-                _sawmill.Info($"Admin log request from admin with id {Player.UserId.UserId} and name {Player.Name}");
-
-                _logSendCancellation.Cancel();
-                _logSendCancellation = new CancellationTokenSource();
-                _filter = new LogFilter
                 {
-                    CancellationToken = _logSendCancellation.Token,
-                    Round = request.RoundId,
-                    Search = request.Search,
-                    Types = request.Types,
-                    Impacts = request.Impacts,
-                    Before = request.Before,
-                    After = request.After,
-                    IncludePlayers = request.IncludePlayers,
-                    AnyPlayers = request.AnyPlayers,
-                    AllPlayers = request.AllPlayers,
-                    IncludeNonPlayers = request.IncludeNonPlayers,
-                    LastLogId = null,
-                    Limit = _clientBatchSize
-                };
+                    _sawmill.Info($"Admin log request from admin with id {Player.UserId.UserId} and name {Player.Name}");
 
-                var roundId = _filter.Round ??= CurrentRoundId;
-                await LoadFromDb(roundId);
+                    _logSendCancellation.Cancel();
+                    _logSendCancellation = new CancellationTokenSource();
+                    _filter = new LogFilter
+                    {
+                        CancellationToken = _logSendCancellation.Token,
+                        Round = request.RoundId,
+                        Search = request.Search,
+                        Types = request.Types,
+                        Impacts = request.Impacts,
+                        Before = request.Before,
+                        After = request.After,
+                        IncludePlayers = request.IncludePlayers,
+                        AnyPlayers = request.AnyPlayers,
+                        AllPlayers = request.AllPlayers,
+                        IncludeNonPlayers = request.IncludeNonPlayers,
+                        LastLogId = null,
+                        Limit = _clientBatchSize
+                    };
 
-                SendLogs(true);
-                break;
-            }
+                    var roundId = _filter.Round ??= CurrentRoundId;
+                    await LoadFromDb(roundId);
+
+                    SendLogs(true);
+                    break;
+                }
             case NextLogsRequest:
-            {
-                _sawmill.Info($"Admin log next batch request from admin with id {Player.UserId.UserId} and name {Player.Name}");
+                {
+                    _sawmill.Info($"Admin log next batch request from admin with id {Player.UserId.UserId} and name {Player.Name}");
 
-                SendLogs(false);
-                break;
-            }
+                    SendLogs(false);
+                    break;
+                }
         }
     }
 

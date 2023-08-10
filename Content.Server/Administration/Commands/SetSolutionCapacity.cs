@@ -47,14 +47,15 @@ namespace Content.Server.Administration.Commands
                 return;
             }
 
-            if(quantityFloat < 0.0f)
+            if (quantityFloat < 0.0f)
             {
                 shell.WriteLine($"Cannot set the maximum volume of a solution to a negative number.");
                 return;
             }
 
             var quantity = FixedPoint2.New(quantityFloat);
-            EntitySystem.Get<SolutionContainerSystem>().SetCapacity(uid, solution, quantity);
+            var entityManager = IoCManager.Resolve<IEntityManager>();
+            entityManager.System<SolutionContainerSystem>().SetCapacity(uid, solution, quantity);
         }
     }
 }

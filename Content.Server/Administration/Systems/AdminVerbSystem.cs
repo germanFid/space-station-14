@@ -111,7 +111,7 @@ namespace Content.Server.Administration.Systems
                             ? Loc.GetString("admin-verbs-unfreeze")
                             : Loc.GetString("admin-verbs-freeze"),
                         Category = VerbCategory.Admin,
-                        Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/snow.svg.192dpi.png")),
+                        Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/snow.svg.192dpi.png")),
                         Act = () =>
                         {
                             if (frozen)
@@ -135,7 +135,7 @@ namespace Content.Server.Administration.Systems
                         {
                             var ui = new AdminLogsEui();
                             _eui.OpenEui(ui, player);
-                            ui.SetLogFilter(search:args.Target.GetHashCode().ToString());
+                            ui.SetLogFilter(search: args.Target.GetHashCode().ToString());
                         },
                         Impact = LogImpact.Low
                     };
@@ -147,7 +147,7 @@ namespace Content.Server.Administration.Systems
                 {
                     Text = Loc.GetString("admin-verbs-teleport-to"),
                     Category = VerbCategory.Admin,
-                    Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/open.svg.192dpi.png")),
+                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/open.svg.192dpi.png")),
                     Act = () => _console.ExecuteCommand(player, $"tpto {args.Target}"),
                     Impact = LogImpact.Low
                 });
@@ -157,7 +157,7 @@ namespace Content.Server.Administration.Systems
                 {
                     Text = Loc.GetString("admin-verbs-teleport-here"),
                     Category = VerbCategory.Admin,
-                    Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/close.svg.192dpi.png")),
+                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/close.svg.192dpi.png")),
                     Act = () => _console.ExecuteCommand(player, $"tpto {args.User} {args.Target}"),
                     Impact = LogImpact.Low
                 });
@@ -196,7 +196,7 @@ namespace Content.Server.Administration.Systems
                 {
                     Text = Loc.GetString("delete-verb-get-data-text"),
                     Category = VerbCategory.Debug,
-                    Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/delete_transparent.svg.192dpi.png")),
+                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/delete_transparent.svg.192dpi.png")),
                     Act = () => EntityManager.DeleteEntity(args.Target),
                     Impact = LogImpact.Medium,
                     ConfirmationPopup = true
@@ -211,7 +211,7 @@ namespace Content.Server.Administration.Systems
                 {
                     Text = Loc.GetString("rejuvenate-verb-get-data-text"),
                     Category = VerbCategory.Debug,
-                    Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/rejuvenate.svg.192dpi.png")),
+                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/rejuvenate.svg.192dpi.png")),
                     Act = () => RejuvenateCommand.PerformRejuvenate(args.Target),
                     Impact = LogImpact.Medium
                 };
@@ -270,7 +270,7 @@ namespace Content.Server.Administration.Systems
                 {
                     Text = Loc.GetString("make-sentient-verb-get-data-text"),
                     Category = VerbCategory.Debug,
-                    Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/sentient.svg.192dpi.png")),
+                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/sentient.svg.192dpi.png")),
                     Act = () => MakeSentientCommand.MakeSentient(args.Target, EntityManager),
                     Impact = LogImpact.Medium
                 };
@@ -285,7 +285,7 @@ namespace Content.Server.Administration.Systems
                 {
                     Text = Loc.GetString("set-outfit-verb-get-data-text"),
                     Category = VerbCategory.Debug,
-                    Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/outfit.svg.192dpi.png")),
+                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/outfit.svg.192dpi.png")),
                     Act = () => _euiManager.OpenEui(new SetOutfitEui(args.Target), player),
                     Impact = LogImpact.Medium
                 };
@@ -299,7 +299,7 @@ namespace Content.Server.Administration.Systems
                 {
                     Text = Loc.GetString("in-range-unoccluded-verb-get-data-text"),
                     Category = VerbCategory.Debug,
-                    Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/information.svg.192dpi.png")),
+                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/information.svg.192dpi.png")),
                     Act = () =>
                     {
                         var message = args.User.InRangeUnOccluded(args.Target)
@@ -319,7 +319,7 @@ namespace Content.Server.Administration.Systems
                 {
                     Text = Loc.GetString("tube-direction-verb-get-data-text"),
                     Category = VerbCategory.Debug,
-                    Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/information.svg.192dpi.png")),
+                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/information.svg.192dpi.png")),
                     Act = () => _disposalTubes.PopupDirections(args.Target, tube, args.User)
                 };
                 args.Verbs.Add(verb);
@@ -345,7 +345,7 @@ namespace Content.Server.Administration.Systems
                 Verb verb = new()
                 {
                     Text = Loc.GetString("configure-verb-get-data-text"),
-                    Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/settings.svg.192dpi.png")),
+                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/settings.svg.192dpi.png")),
                     Category = VerbCategory.Debug,
                     Act = () => _uiSystem.TryOpen(args.Target, ConfigurationUiKey.Key, actor.PlayerSession)
                 };
@@ -360,7 +360,7 @@ namespace Content.Server.Administration.Systems
                 {
                     Text = Loc.GetString("edit-solutions-verb-get-data-text"),
                     Category = VerbCategory.Debug,
-                    Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/spill.svg.192dpi.png")),
+                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/spill.svg.192dpi.png")),
                     Act = () => OpenEditSolutionsEui(player, args.Target),
                     Impact = LogImpact.Medium // maybe high depending on WHAT reagents they add...
                 };

@@ -4,27 +4,25 @@ using Content.Shared.Administration;
 using Robust.Server.Player;
 using Robust.Shared.Console;
 
+namespace Content.Server.Administration.Commands;
 
-namespace Content.Server.Administration.Commands
+[AdminCommand(AdminFlags.Permissions)]
+public sealed class OpenPermissionsCommand : IConsoleCommand
 {
-    [AdminCommand(AdminFlags.Permissions)]
-    public sealed class OpenPermissionsCommand : IConsoleCommand
+    public string Command => "permissions";
+    public string Description => "Opens the admin permissions panel.";
+    public string Help => "Usage: permissions";
+
+    public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        public string Command => "permissions";
-        public string Description => "Opens the admin permissions panel.";
-        public string Help => "Usage: permissions";
-
-        public void Execute(IConsoleShell shell, string argStr, string[] args)
+        if (shell.Player is not IPlayerSession player)
         {
-            if (shell.Player is not IPlayerSession player)
-            {
-                shell.WriteLine("This does not work from the server console.");
-                return;
-            }
-
-            var eui = IoCManager.Resolve<EuiManager>();
-            var ui = new PermissionsEui();
-            eui.OpenEui(ui, player);
+            shell.WriteLine("This does not work from the server console.");
+            return;
         }
+
+        var eui = IoCManager.Resolve<EuiManager>();
+        var ui = new PermissionsEui();
+        eui.OpenEui(ui, player);
     }
 }

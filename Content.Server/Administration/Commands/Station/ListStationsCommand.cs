@@ -1,5 +1,4 @@
 using Content.Server.Station.Components;
-using Content.Server.Station.Systems;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
 
@@ -23,7 +22,7 @@ public sealed class ListStationsCommand : IConsoleCommand
         while (query.MoveNext(out var station, out _))
         {
             var name = _entityManager.GetComponent<MetaDataComponent>(station).EntityName;
-            shell.WriteLine($"{station, -10} | {name}");
+            shell.WriteLine($"{station,-10} | {name}");
         }
     }
 }

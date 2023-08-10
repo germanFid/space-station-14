@@ -1,4 +1,4 @@
-﻿using Content.Shared.Administration;
+using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
@@ -17,17 +17,12 @@ public sealed class PanicBunkerCommand : IConsoleCommand
     {
         if (args.Length > 1)
         {
-            shell.WriteError(Loc.GetString("shell-need-between-arguments",("lower", 0), ("upper", 1)));
+            shell.WriteError(Loc.GetString("shell-need-between-arguments", ("lower", 0), ("upper", 1)));
             return;
         }
 
-        var enabled = _cfg.GetCVar(CCVars.PanicBunkerEnabled);
-        
-        if (args.Length == 0)
-        {
-            enabled = !enabled;
-        }
-        
+        var enabled = !_cfg.GetCVar(CCVars.PanicBunkerEnabled);
+
         if (args.Length == 1 && !bool.TryParse(args[0], out enabled))
         {
             shell.WriteError(Loc.GetString("shell-argument-must-be-boolean"));
@@ -35,7 +30,7 @@ public sealed class PanicBunkerCommand : IConsoleCommand
         }
 
         _cfg.SetCVar(CCVars.PanicBunkerEnabled, enabled);
-        
+
         shell.WriteLine(Loc.GetString(enabled ? "panicbunker-command-enabled" : "panicbunker-command-disabled"));
     }
 }

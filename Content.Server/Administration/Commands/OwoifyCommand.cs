@@ -1,7 +1,6 @@
 using Content.Server.Speech.EntitySystems;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
-using Robust.Shared.Random;
 
 namespace Content.Server.Administration.Commands;
 
@@ -9,9 +8,7 @@ namespace Content.Server.Administration.Commands;
 public sealed class OwoifyCommand : IConsoleCommand
 {
     public string Command => "owoify";
-
     public string Description => "For when you need everything to be cat. Uses OwOAccent's formatting on the name and description of an entity.";
-
     public string Help => "owoify <id>";
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
