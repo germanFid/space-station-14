@@ -1,7 +1,3 @@
-﻿using System.Collections.Concurrent;
-using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
 using Content.Server.Database;
 using Content.Server.GameTicking;
 using Content.Shared.Administration.Logs;
@@ -12,6 +8,10 @@ using Robust.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.Reflection;
 using Robust.Shared.Timing;
+using System.Collections.Concurrent;
+using System.Text.Json;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Content.Server.Administration.Logs;
 
@@ -125,9 +125,7 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
         PreRoundQueue.Set(preRoundCount);
 
         if (count + preRoundCount == 0)
-        {
             return;
-        }
 
         if (_timing.RealTime >= _nextUpdateTime)
         {
@@ -153,9 +151,7 @@ public sealed partial class AdminLogManager : SharedAdminLogManager, IAdminLogMa
         PreRoundQueue.Set(preRoundCount);
 
         if (preRoundCount < _preRoundQueueMax)
-        {
             return;
-        }
 
         if (_metricsEnabled)
         {

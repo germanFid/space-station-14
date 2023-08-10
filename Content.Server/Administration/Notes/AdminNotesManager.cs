@@ -1,4 +1,3 @@
-﻿using System.Threading.Tasks;
 using Content.Server.Administration.Managers;
 using Content.Server.Database;
 using Content.Server.EUI;
@@ -7,6 +6,7 @@ using Content.Shared.Administration;
 using Content.Shared.Administration.Notes;
 using Robust.Server.Player;
 using Robust.Shared.Network;
+using System.Threading.Tasks;
 
 namespace Content.Server.Administration.Notes;
 
@@ -109,9 +109,7 @@ public sealed class AdminNotesManager : IAdminNotesManager, IPostInjectInit
 
         var note = await _db.GetAdminNote(noteId);
         if (note == null || note.Message == message)
-        {
             return;
-        }
 
         _sawmill.Info($"Player {editedBy.Name} modified note {noteId} with message {message}");
 

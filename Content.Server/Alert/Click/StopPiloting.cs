@@ -3,24 +3,23 @@ using Content.Shared.Alert;
 using Content.Shared.Shuttles.Components;
 using JetBrains.Annotations;
 
-namespace Content.Server.Alert.Click
-{
-    /// <summary>
-    /// Stop piloting shuttle
-    /// </summary>
-    [UsedImplicitly]
-    [DataDefinition]
-    public sealed class StopPiloting : IAlertClick
-    {
-        public void AlertClicked(EntityUid player)
-        {
-            var entManager = IoCManager.Resolve<IEntityManager>();
+namespace Content.Server.Alert.Click;
 
-            if (entManager.TryGetComponent(player, out PilotComponent? pilotComponent) &&
-                pilotComponent.Console != null)
-            {
-                entManager.System<ShuttleConsoleSystem>().RemovePilot(player, pilotComponent);
-            }
+/// <summary>
+/// Stop piloting shuttle
+/// </summary>
+[UsedImplicitly]
+[DataDefinition]
+public sealed class StopPiloting : IAlertClick
+{
+    public void AlertClicked(EntityUid player)
+    {
+        var entManager = IoCManager.Resolve<IEntityManager>();
+
+        if (entManager.TryGetComponent(player, out PilotComponent? pilotComponent) &&
+            pilotComponent.Console != null)
+        {
+            entManager.System<ShuttleConsoleSystem>().RemovePilot(player, pilotComponent);
         }
     }
 }

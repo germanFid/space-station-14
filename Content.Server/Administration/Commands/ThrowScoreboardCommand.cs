@@ -1,4 +1,4 @@
-﻿using Content.Server.GameTicking;
+using Content.Server.GameTicking;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
 
@@ -20,6 +20,8 @@ public sealed class ThrowScoreboardCommand : IConsoleCommand
             shell.WriteLine(Help);
             return;
         }
-        EntitySystem.Get<GameTicker>().ShowRoundEndScoreboard();
+
+        var entityManager = IoCManager.Resolve<IEntityManager>();
+        entityManager.System<GameTicker>().ShowRoundEndScoreboard();
     }
 }

@@ -6,7 +6,6 @@ namespace Content.Server.Anomaly.Components;
 [RegisterComponent]
 public sealed class TempAffectingAnomalyComponent : Component
 {
-
     /// <summary>
     /// The the amount the tempurature should be modified by (negative for decreasing temp)
     /// </summary>

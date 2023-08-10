@@ -1,9 +1,3 @@
-﻿using System.Collections.Immutable;
-using System.Linq;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 using Content.Server.Database;
 using Content.Shared.Players;
 using Content.Shared.Roles;
@@ -12,6 +6,11 @@ using Robust.Shared.Console;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
+using System.Collections.Immutable;
+using System.Linq;
+using System.Net;
+using System.Net.Sockets;
+using System.Threading.Tasks;
 
 namespace Content.Server.Administration.Managers;
 
@@ -39,9 +38,7 @@ public sealed class RoleBanManager
     {
         if (e.NewStatus != SessionStatus.Connected
             || _cachedRoleBans.ContainsKey(e.Session.UserId))
-        {
             return;
-        }
 
         var netChannel = e.Session.ConnectedClient;
         await CacheDbRoleBans(e.Session.UserId, netChannel.RemoteEndPoint.Address, netChannel.UserData.HWId.Length == 0 ? null : netChannel.UserData.HWId);
@@ -68,9 +65,7 @@ public sealed class RoleBanManager
     public void SendRoleBans(LocatedPlayerData located)
     {
         if (!_playerManager.TryGetSessionById(located.UserId, out var player))
-        {
             return;
-        }
 
         SendRoleBans(player);
     }

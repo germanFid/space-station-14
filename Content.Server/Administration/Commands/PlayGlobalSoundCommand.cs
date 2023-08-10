@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server.Audio;
 using Content.Shared.Administration;
 using Robust.Server.Player;
@@ -7,7 +6,7 @@ using Robust.Shared.Console;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Player;
 using Robust.Shared.Players;
-using Robust.Shared.Prototypes;
+using System.Linq;
 
 namespace Content.Server.Administration.Commands;
 
@@ -27,7 +26,7 @@ public sealed class PlayGlobalSoundCommand : IConsoleCommand
         Filter filter;
         var audio = AudioParams.Default;
 
-        bool replay = true;
+        var replay = true;
 
         switch (args.Length)
         {
@@ -44,7 +43,7 @@ public sealed class PlayGlobalSoundCommand : IConsoleCommand
 
             // One or more users specified.
             default:
-                var volumeOffset = 0;
+                int volumeOffset;
 
                 // Try to specify a new volume to play it at.
                 if (int.TryParse(args[1], out var volume))
@@ -84,7 +83,6 @@ public sealed class PlayGlobalSoundCommand : IConsoleCommand
                         filter.AddPlayer(session);
                     }
                 }
-
                 break;
         }
 

@@ -1,14 +1,12 @@
-using Content.Server.Popups;
 using Content.Server.Coordinates.Helpers;
+using Content.Server.Popups;
+using Content.Server.Speech.Muting;
 using Content.Shared.Actions;
 using Content.Shared.Alert;
-using Content.Shared.Physics;
-using Content.Shared.Doors.Components;
 using Content.Shared.Maps;
 using Content.Shared.Mobs.Components;
-using Robust.Shared.Physics.Components;
+using Content.Shared.Physics;
 using Robust.Shared.Timing;
-using Content.Server.Speech.Muting;
 
 namespace Content.Server.Abilities.Mime
 {

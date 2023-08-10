@@ -1,10 +1,10 @@
-﻿using System.Linq;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using Content.Server.Administration.Logs.Converters;
 using Content.Server.Database;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
+using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace Content.Server.Administration.Logs;
 
@@ -56,7 +56,7 @@ public sealed partial class AdminLogManager
             {
                 EntityUid id => id,
                 EntityStringRepresentation rep => rep.Uid,
-                IPlayerSession {AttachedEntity: {Valid: true}} session => session.AttachedEntity,
+                IPlayerSession { AttachedEntity.Valid: true } session => session.AttachedEntity,
                 IComponent component => component.Owner,
                 _ => null
             };

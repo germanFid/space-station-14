@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Server.Afk.Events;
 using Content.Server.GameTicking;
 using Content.Shared.CCVar;

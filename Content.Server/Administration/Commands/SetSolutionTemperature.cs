@@ -52,7 +52,8 @@ namespace Content.Server.Administration.Commands
                 return;
             }
 
-            EntitySystem.Get<SolutionContainerSystem>().SetTemperature(uid, solution, quantity);
+            var entityManager = IoCManager.Resolve<IEntityManager>();
+            entityManager.System<SolutionContainerSystem>().SetTemperature(uid, solution, quantity);
         }
     }
 }

@@ -1,11 +1,11 @@
-using System.Linq;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
+using System.Linq;
 
 namespace Content.Server.Administration.Commands
 {
     [AdminCommand(AdminFlags.Spawn)]
-    sealed class DeleteEntitiesWithComponent : IConsoleCommand
+    public sealed class DeleteEntitiesWithComponent : IConsoleCommand
     {
         public string Command => "deleteewc";
 
@@ -32,7 +32,8 @@ namespace Content.Server.Administration.Commands
             var entityManager = IoCManager.Resolve<IEntityManager>();
 
             var entitiesWithComponents = components.Select(c => entityManager.GetAllComponents(c).Select(x => x.Owner));
-            var entitiesWithAllComponents = entitiesWithComponents.Skip(1).Aggregate(new HashSet<EntityUid>(entitiesWithComponents.First()), (h, e) => { h.IntersectWith(e); return h; });
+            var entitiesWithAllComponents = entitiesWithComponents.Skip(1)
+                .Aggregate(new HashSet<EntityUid>(entitiesWithComponents.First()), (h, e) => { h.IntersectWith(e); return h; });
 
             var count = 0;
             foreach (var entity in entitiesWithAllComponents)
@@ -41,7 +42,7 @@ namespace Content.Server.Administration.Commands
                 count += 1;
             }
 
-            shell.WriteLine(Loc.GetString("delete-entities-with-component-command-deleted-components",("count", count)));
+            shell.WriteLine(Loc.GetString("delete-entities-with-component-command-deleted-components", ("count", count)));
         }
     }
 }

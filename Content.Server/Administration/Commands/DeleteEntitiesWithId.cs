@@ -1,6 +1,6 @@
-using System.Linq;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
+using System.Linq;
 
 namespace Content.Server.Administration.Commands
 {

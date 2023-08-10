@@ -1,4 +1,4 @@
-﻿using Content.Server.Administration.Commands;
+using Content.Server.Administration.Commands;
 using Content.Shared.Database;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
@@ -19,16 +19,12 @@ public sealed class AdminNotesSystem : EntitySystem
 
     private void AddVerbs(GetVerbsEvent<Verb> ev)
     {
-        if (EntityManager.GetComponentOrNull<ActorComponent>(ev.User) is not {PlayerSession: var user} ||
-            EntityManager.GetComponentOrNull<ActorComponent>(ev.Target) is not {PlayerSession: var target})
-        {
+        if (EntityManager.GetComponentOrNull<ActorComponent>(ev.User) is not { PlayerSession: var user } ||
+            EntityManager.GetComponentOrNull<ActorComponent>(ev.Target) is not { PlayerSession: var target })
             return;
-        }
 
         if (!_notes.CanView(user))
-        {
             return;
-        }
 
         var verb = new Verb
         {

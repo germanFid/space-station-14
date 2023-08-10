@@ -2,7 +2,6 @@ using Content.Shared.Actions;
 using Content.Shared.Actions.ActionTypes;
 using Content.Shared.Storage;
 using Robust.Shared.Audio;
-using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Animals.Components;
@@ -52,4 +51,4 @@ public sealed class EggLayerComponent : Component
     public float AccumulatedFrametime;
 }
 
-public sealed class EggLayInstantActionEvent : InstantActionEvent {}
+public sealed class EggLayInstantActionEvent : InstantActionEvent { }

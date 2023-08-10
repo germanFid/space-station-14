@@ -1,8 +1,8 @@
-﻿using System.Threading.Tasks;
 using Content.Server.Administration.Managers;
 using Content.Server.EUI;
 using Content.Shared.Administration.Notes;
 using Content.Shared.Eui;
+using System.Threading.Tasks;
 using static Content.Shared.Administration.Notes.AdminNoteEuiMsg;
 
 namespace Content.Server.Administration.Notes;
@@ -58,49 +58,49 @@ public sealed class AdminNotesEui : BaseEui
 
         switch (msg)
         {
-            case CreateNoteRequest {Message: var message}:
-            {
-                if (!_notesMan.CanCreate(Player))
+            case CreateNoteRequest { Message: var message }:
                 {
-                    Close();
+                    if (!_notesMan.CanCreate(Player))
+                    {
+                        Close();
+                        break;
+                    }
+
+                    if (string.IsNullOrWhiteSpace(message))
+                    {
+                        break;
+                    }
+
+                    await _notesMan.AddNote(Player, NotedPlayer, message);
                     break;
                 }
-
-                if (string.IsNullOrWhiteSpace(message))
-                {
-                    break;
-                }
-
-                await _notesMan.AddNote(Player, NotedPlayer, message);
-                break;
-            }
             case DeleteNoteRequest request:
-            {
-                if (!_notesMan.CanDelete(Player))
                 {
-                    Close();
+                    if (!_notesMan.CanDelete(Player))
+                    {
+                        Close();
+                        break;
+                    }
+
+                    await _notesMan.DeleteNote(request.Id, Player);
                     break;
                 }
-
-                await _notesMan.DeleteNote(request.Id, Player);
-                break;
-            }
             case EditNoteRequest request:
-            {
-                if (!_notesMan.CanEdit(Player))
                 {
-                    Close();
+                    if (!_notesMan.CanEdit(Player))
+                    {
+                        Close();
+                        break;
+                    }
+
+                    if (string.IsNullOrWhiteSpace(request.Message))
+                    {
+                        break;
+                    }
+
+                    await _notesMan.ModifyNote(request.Id, Player, request.Message);
                     break;
                 }
-
-                if (string.IsNullOrWhiteSpace(request.Message))
-                {
-                    break;
-                }
-
-                await _notesMan.ModifyNote(request.Id, Player, request.Message);
-                break;
-            }
         }
     }
 

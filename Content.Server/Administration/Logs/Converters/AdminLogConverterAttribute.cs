@@ -1,4 +1,4 @@
-﻿using JetBrains.Annotations;
+using JetBrains.Annotations;
 
 namespace Content.Server.Administration.Logs.Converters;
 
@@ -6,5 +6,4 @@ namespace Content.Server.Administration.Logs.Converters;
 [BaseTypeRequired(typeof(AdminLogConverter<>))]
 [MeansImplicitUse]
 public sealed class AdminLogConverterAttribute : Attribute
-{
-}
+{ }

@@ -1,7 +1,6 @@
 using Content.Server.Power.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.AlertLevel;
-using Robust.Server.GameObjects;
 
 namespace Content.Server.AlertLevel;
 

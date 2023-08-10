@@ -46,6 +46,5 @@ namespace Content.Server.Administration.UI
         {
             return _adminManager.HasAdminFlag(Player, flags);
         }
-
     }
 }

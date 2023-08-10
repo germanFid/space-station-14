@@ -1,9 +1,10 @@
-﻿using Content.Server.Ensnaring;
+using Content.Server.Ensnaring;
 using Content.Shared.Alert;
 using Content.Shared.Ensnaring.Components;
 using JetBrains.Annotations;
 
 namespace Content.Server.Alert.Click;
+
 [UsedImplicitly]
 [DataDefinition]
 public sealed class RemoveEnsnare : IAlertClick

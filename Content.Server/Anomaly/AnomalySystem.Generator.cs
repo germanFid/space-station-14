@@ -4,9 +4,9 @@ using Content.Server.Power.EntitySystems;
 using Content.Shared.Anomaly;
 using Content.Shared.CCVar;
 using Content.Shared.Materials;
+using Content.Shared.Physics;
 using Content.Shared.Radio;
 using Robust.Shared.Audio;
-using Content.Shared.Physics;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
@@ -99,7 +99,7 @@ public sealed partial class AnomalySystem
         for (var i = 0; i < 25; i++)
         {
             var randomX = Random.Next((int) gridBounds.Left, (int) gridBounds.Right);
-            var randomY = Random.Next((int) gridBounds.Bottom, (int)gridBounds.Top);
+            var randomY = Random.Next((int) gridBounds.Bottom, (int) gridBounds.Top);
 
             var tile = new Vector2i(randomX, randomY);
 

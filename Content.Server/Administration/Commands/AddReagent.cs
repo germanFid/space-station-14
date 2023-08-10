@@ -59,10 +59,11 @@ namespace Content.Server.Administration.Commands
             }
             var quantity = FixedPoint2.New(MathF.Abs(quantityFloat));
 
+            var entityManager = IoCManager.Resolve<IEntityManager>();
             if (quantityFloat > 0)
-                EntitySystem.Get<SolutionContainerSystem>().TryAddReagent(uid, solution, args[2], quantity, out var _);
+                entityManager.System<SolutionContainerSystem>().TryAddReagent(uid, solution, args[2], quantity, out var _);
             else
-                EntitySystem.Get<SolutionContainerSystem>().TryRemoveReagent(uid, solution, args[2], quantity);
+                entityManager.System<SolutionContainerSystem>().TryRemoveReagent(uid, solution, args[2], quantity);
         }
     }
 }

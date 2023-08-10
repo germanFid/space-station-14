@@ -1,4 +1,3 @@
-using Content.Server.Chat;
 using Content.Server.Chat.Systems;
 using Content.Shared.Administration;
 using Robust.Server.Player;
@@ -7,7 +6,7 @@ using Robust.Shared.Console;
 namespace Content.Server.Administration.Commands
 {
     [AdminCommand(AdminFlags.Admin)]
-    sealed class DSay : IConsoleCommand
+    public sealed class DSay : IConsoleCommand
     {
         public string Command => "dsay";
 
@@ -17,8 +16,7 @@ namespace Content.Server.Administration.Commands
 
         public void Execute(IConsoleShell shell, string argStr, string[] args)
         {
-            var player = shell.Player as IPlayerSession;
-            if (player == null)
+            if (shell.Player is not IPlayerSession player)
             {
                 shell.WriteLine("shell-only-players-can-run-this-command");
                 return;
@@ -34,7 +32,8 @@ namespace Content.Server.Administration.Commands
             if (string.IsNullOrEmpty(message))
                 return;
 
-            var chat = EntitySystem.Get<ChatSystem>();
+            var entityManager = IoCManager.Resolve<IEntityManager>();
+            var chat = entityManager.System<ChatSystem>();
             chat.TrySendInGameOOCMessage(entity, message, InGameOOCChatType.Dead, false, shell, player);
         }
     }

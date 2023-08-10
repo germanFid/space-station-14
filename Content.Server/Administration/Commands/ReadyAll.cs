@@ -1,6 +1,5 @@
-﻿using Content.Server.GameTicking;
+using Content.Server.GameTicking;
 using Content.Shared.Administration;
-using Content.Shared.GameTicking;
 using Robust.Shared.Console;
 
 namespace Content.Server.Administration.Commands
@@ -20,8 +19,8 @@ namespace Content.Server.Administration.Commands
                 ready = bool.Parse(args[0]);
             }
 
-            var gameTicker = EntitySystem.Get<GameTicker>();
-
+            var entityManager = IoCManager.Resolve<IEntityManager>();
+            var gameTicker = entityManager.System<GameTicker>();
 
             if (gameTicker.RunLevel != GameRunLevel.PreRoundLobby)
             {

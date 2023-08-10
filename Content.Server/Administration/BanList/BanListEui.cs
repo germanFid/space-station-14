@@ -1,4 +1,4 @@
-﻿using System.Threading.Tasks;
+using System.Threading.Tasks;
 using Content.Server.Administration.Managers;
 using Content.Server.Database;
 using Content.Server.EUI;
@@ -15,6 +15,7 @@ public sealed class BanListEui : BaseEui
     [Dependency] private readonly IPlayerLocator _playerLocator = default!;
     [Dependency] private readonly IServerDbManager _db = default!;
 
+    //? обычно принято ставить конструктор после всех полей и свойств
     public BanListEui()
     {
         IoCManager.InjectDependencies(this);

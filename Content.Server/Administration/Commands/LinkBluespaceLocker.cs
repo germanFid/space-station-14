@@ -1,4 +1,4 @@
-﻿using Content.Server.Storage.Components;
+using Content.Server.Storage.Components;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
 
@@ -19,7 +19,7 @@ public sealed class LinkBluespaceLocker : IConsoleCommand
             return;
         }
 
-        if (!Boolean.TryParse(args[0], out var bidirectional))
+        if (!bool.TryParse(args[0], out var bidirectional))
         {
             shell.WriteError(Loc.GetString("shell-invalid-bool"));
             return;

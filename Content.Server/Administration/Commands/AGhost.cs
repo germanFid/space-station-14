@@ -1,4 +1,4 @@
-﻿using Content.Server.GameTicking;
+using Content.Server.GameTicking;
 using Content.Server.Ghost.Components;
 using Content.Server.Players;
 using Content.Shared.Administration;
@@ -19,8 +19,7 @@ namespace Content.Server.Administration.Commands
 
         public void Execute(IConsoleShell shell, string argStr, string[] args)
         {
-            var player = shell.Player as IPlayerSession;
-            if (player == null)
+            if (shell.Player is not IPlayerSession player)
             {
                 shell.WriteLine("Nah");
                 return;
@@ -40,18 +39,22 @@ namespace Content.Server.Administration.Commands
                 return;
             }
 
+            var entityManager = IoCManager.Resolve<IEntityManager>();
+
             var canReturn = mind.CurrentEntity != null
                             && !_entities.HasComponent<GhostComponent>(mind.CurrentEntity);
+
             var coordinates = player.AttachedEntity != null
                 ? _entities.GetComponent<TransformComponent>(player.AttachedEntity.Value).Coordinates
-                : EntitySystem.Get<GameTicker>().GetObserverSpawnPoint();
+                : entityManager.System<GameTicker>().GetObserverSpawnPoint();
+
             var ghost = _entities.SpawnEntity("AdminObserver", coordinates);
-            _entities.GetComponent<TransformComponent>(ghost).AttachToGridOrMap();
+            _entities.GetComponent<TransformComponent>(ghost).AttachToGridOrMap(); //? Устарело, новый не нашёл, пока что...
 
             if (canReturn)
             {
                 // TODO: Remove duplication between all this and "GamePreset.OnGhostAttempt()"...
-                if(!string.IsNullOrWhiteSpace(mind.CharacterName))
+                if (!string.IsNullOrWhiteSpace(mind.CharacterName))
                     _entities.GetComponent<MetaDataComponent>(ghost).EntityName = mind.CharacterName;
                 else if (!string.IsNullOrWhiteSpace(mind.Session?.Name))
                     _entities.GetComponent<MetaDataComponent>(ghost).EntityName = mind.Session.Name;
@@ -65,7 +68,7 @@ namespace Content.Server.Administration.Commands
             }
 
             var comp = _entities.GetComponent<GhostComponent>(ghost);
-            EntitySystem.Get<SharedGhostSystem>().SetCanReturnToBody(comp, canReturn);
+            entityManager.System<SharedGhostSystem>().SetCanReturnToBody(comp, canReturn);
         }
     }
 }

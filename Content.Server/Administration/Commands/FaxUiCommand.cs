@@ -16,8 +16,7 @@ public sealed class FaxUiCommand : IConsoleCommand
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        var player = shell.Player as IPlayerSession;
-        if (player == null)
+        if (shell.Player is not IPlayerSession player)
         {
             shell.WriteLine("shell-only-players-can-run-this-command");
             return;

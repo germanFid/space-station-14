@@ -22,7 +22,8 @@ public sealed class SpawnExplosionEui : BaseEui
         if (request.TotalIntensity <= 0 || request.IntensitySlope <= 0)
             return;
 
-        var explosion = EntitySystem.Get<ExplosionSystem>().GenerateExplosionPreview(request);
+        var entityManager = IoCManager.Resolve<IEntityManager>();
+        var explosion = entityManager.System<ExplosionSystem>().GenerateExplosionPreview(request);
 
         if (explosion == null)
         {
