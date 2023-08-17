@@ -126,9 +126,6 @@ namespace Content.Client.Actions
 
         public override void AddAction(EntityUid uid, ActionType action, EntityUid? provider, ActionsComponent? comp = null, bool dirty = true)
         {
-            if (GameTiming.ApplyingState && !action.ClientExclusive)
-                return;
-
             if (!Resolve(uid, ref comp, false))
                 return;
 
@@ -173,7 +170,7 @@ namespace Content.Client.Actions
         public void LinkAllActions(ActionsComponent? actions = null)
         {
              var player = _playerManager.LocalPlayer?.ControlledEntity;
-             if (player == null || !Resolve(player.Value, ref actions))
+             if (player == null || !Resolve(player.Value, ref actions, false))
              {
                  return;
              }

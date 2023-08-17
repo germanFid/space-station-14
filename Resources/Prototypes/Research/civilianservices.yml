@@ -38,8 +38,29 @@
   tier: 1
   cost: 5000
   recipeUnlocks:
+  - BorgModuleGardening
   - SeedExtractorMachineCircuitboard
   - HydroponicsTrayMachineCircuitboard
+
+- type: technology
+  id: CritterMechs
+  name: research-technology-critter-mechs
+  icon:
+    sprite: Objects/Specific/Mech/mecha.rsi
+    state: hamtr
+  discipline: CivilianServices
+  tier: 1
+  cost: 10000
+  recipeUnlocks:
+  - HamtrHarness
+  - HamtrLArm
+  - HamtrRArm
+  - HamtrLLeg
+  - HamtrRLeg
+  - HamtrCentralElectronics
+  - HamtrPeripheralsElectronics
+  - MechEquipmentGrabberSmall
+  - VimHarness
 
 - type: technology
   id: FoodService
@@ -86,9 +107,27 @@
   recipeUnlocks:
     - ComputerTelevisionCircuitboard
     - SynthesizerInstrument
+    - BorgModuleMusique
+    - BorgModuleLiteracy
+    - BorgModuleClowning
     - DawInstrumentMachineCircuitboard
+    - MassMediaCircuitboard
 
 # Tier 2
+
+- type: technology
+  id: RoboticCleanliness
+  name: research-technology-robotic-cleanliness
+  icon:
+    sprite: Mobs/Silicon/chassis.rsi
+    state: janitor
+  discipline: CivilianServices
+  tier: 2
+  cost: 5000
+  recipeUnlocks:
+  - BorgModuleLightReplacer
+  - BorgModuleCleaning
+  - BorgModuleTrashCollection
 
 - type: technology
   id: AdvancedCleaning
@@ -116,6 +155,7 @@
   cost: 5000
   recipeUnlocks:
   - FatExtractorMachineCircuitboard
+  - SheetifierMachineCircuitboard
 
 - type: technology
   id: HONKMech

@@ -1,4 +1,5 @@
-﻿using Robust.Shared.Prototypes;
+﻿using System.Numerics;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Chat.TypingIndicator;
@@ -23,7 +24,7 @@ public sealed class TypingIndicatorPrototype : IPrototype
     public string IdleState = default!;
     // Corvax-TypingIndicator-End
     [DataField("offset")]
-    public Vector2 Offset = new(0.5f, 0.5f);
+    public Vector2 Offset = new(0, 0);
 
     [DataField("shader")]
     public string Shader = "unshaded";
