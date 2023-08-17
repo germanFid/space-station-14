@@ -1,14 +1,17 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Linq;
+using System.Text.Json.Serialization;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Body.Prototypes;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
+using Content.Shared.Nutrition;
 using Robust.Shared.Audio;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Array;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Dictionary;
@@ -58,8 +61,14 @@ namespace Content.Shared.Chemistry.Reagent
         [DataField("recognizable")]
         public bool Recognizable = false;
 
-        [DataField("flavor")]
-        public string Flavor { get; } = default!;
+        [DataField("flavor", customTypeSerializer:typeof(PrototypeIdSerializer<FlavorPrototype>))]
+        public string? Flavor;
+
+        /// <summary>
+        /// There must be at least this much quantity in a solution to be tasted.
+        /// </summary>
+        [DataField("flavorMinimum")]
+        public FixedPoint2 FlavorMinimum = FixedPoint2.New(0.1f);
 
         [DataField("color")]
         public Color SubstanceColor { get; } = Color.White;
@@ -157,6 +166,23 @@ namespace Content.Shared.Chemistry.Reagent
         }
     }
 
+    [Serializable, NetSerializable]
+    public struct ReagentGuideEntry
+    {
+        public string ReagentPrototype;
+
+        public Dictionary<string, ReagentEffectsGuideEntry>? GuideEntries;
+
+        public ReagentGuideEntry(ReagentPrototype proto, IPrototypeManager prototype, IEntitySystemManager entSys)
+        {
+            ReagentPrototype = proto.ID;
+            GuideEntries = proto.Metabolisms?
+                .Select(x => (x.Key, x.Value.MakeGuideEntry(prototype, entSys)))
+                .ToDictionary(x => x.Key, x => x.Item2);
+        }
+    }
+
+
     [DataDefinition]
     public sealed class ReagentEffectsEntry
     {
@@ -173,6 +199,30 @@ namespace Content.Shared.Chemistry.Reagent
         [JsonPropertyName("effects")]
         [DataField("effects", required: true)]
         public ReagentEffect[] Effects = default!;
+
+        public ReagentEffectsGuideEntry MakeGuideEntry(IPrototypeManager prototype, IEntitySystemManager entSys)
+        {
+            return new ReagentEffectsGuideEntry(MetabolismRate,
+                Effects
+                    .Select(x => x.GuidebookEffectDescription(prototype, entSys)) // hate.
+                    .Where(x => x is not null)
+                    .Select(x => x!)
+                    .ToArray());
+        }
+    }
+
+    [Serializable, NetSerializable]
+    public struct ReagentEffectsGuideEntry
+    {
+        public FixedPoint2 MetabolismRate;
+
+        public string[] EffectDescriptions;
+
+        public ReagentEffectsGuideEntry(FixedPoint2 metabolismRate, string[] effectDescriptions)
+        {
+            MetabolismRate = metabolismRate;
+            EffectDescriptions = effectDescriptions;
+        }
     }
 
     [DataDefinition]

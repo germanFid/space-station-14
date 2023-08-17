@@ -11,29 +11,8 @@
   cost: 5000
   recipeUnlocks:
   - ProximitySensor
-  - LeftArmBorg
-  - LightHeadBorg
-  - RightArmBorg
-  - LeftLegBorg
-  - RightLegBorg
   - Drone
   - ExosuitFabricatorMachineCircuitboard
-
-- type: technology
-  id: SignallingTech
-  name: research-technology-signalling-tech
-  icon:
-    sprite: Objects/Devices/signaller.rsi
-    state: signaller
-  discipline: Experimental
-  tier: 1
-  cost: 7500
-  recipeUnlocks:
-  - Signaller
-  - SignalTrigger
-  - VoiceTrigger
-  - TimerTrigger
-  - SignalTimerElectronics
 
 - type: technology
   id: BasicAnomalousResearch
@@ -47,6 +26,7 @@
   recipeUnlocks:
   - AnomalyScanner
   - AnomalyLocator
+  - BorgModuleAnomaly
   - APECircuitboard
   - AnomalyVesselCircuitboard
 
@@ -61,6 +41,7 @@
   cost: 10000
   recipeUnlocks:
   - NodeScanner
+  - BorgModuleArtifact
   - AnalysisComputerCircuitboard
   - ArtifactAnalyzerMachineCircuitboard
 
